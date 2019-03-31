@@ -1,16 +1,12 @@
 package com.example.kejapp.ui.viewmodel;
 
 import androidx.lifecycle.ViewModelProviders;
-
 import android.os.Bundle;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.kejapp.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -23,7 +19,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class MainFragment extends Fragment implements OnMapReadyCallback {
 
     private MainViewModel mViewModel;
-    MapView mapView;
 
     public static MainFragment newInstance() {
         return new MainFragment();
@@ -33,13 +28,12 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // inflat and return the layout
         View v = inflater.inflate(R.layout.fragment_location_info, container,
                 false);
-        mapView = v.findViewById(R.id.mapView);
+        MapView mapView = v.findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
 
-        mapView.onResume();// needed to get the map to display immediately
+        mapView.onResume();
 
         try {
             MapsInitializer.initialize(getActivity().getApplicationContext());
@@ -49,7 +43,6 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
 
         mapView.getMapAsync(this);
 
-        // Perform any camera updates here
         return v;
     }
 
@@ -64,11 +57,10 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(54.009, 21.736);
+        LatLng wilkasy = new LatLng(54.009, 21.736);
         float zoomLevel = (float) 10.0;
 
-        googleMap.addMarker(new MarkerOptions().position(sydney).title("Piękne Wilkasy"));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, zoomLevel));
+        googleMap.addMarker(new MarkerOptions().position(wilkasy).title("Piękne Wilkasy"));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(wilkasy, zoomLevel));
     }
 }
