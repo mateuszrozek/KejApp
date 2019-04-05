@@ -2,10 +2,7 @@
     <string name="app_name">KEJApp</string>
     <string name="title_activity_maps">Map</string>
 
-
-
     <string name="technicalInfosLabel">Informacje techniczne</string>
-
 
     <string name="entranceWidthLabel">Szerokość wejścia</string>
     <string name="entranceDepthLabel">Głębokość wejścia</string>
@@ -15,9 +12,7 @@
     <string name="dailyWaterLevelUpLabel">Poziom przypływu</string>
     <string name="dailyWaterLevelDownLabel">Poziom odpływu</string>
 
-
     <string name="prices">Ceny</string>
-
 
     <string name="showerPriceLabel">Prysznic</string>
     <string name="bathroomPriceLabel">Łazienka</string>
@@ -25,14 +20,6 @@
     <string name="currentWaterPriceLabel">Woda bieżąca</string>
     <string name="toiletEmptyingPriceLabel">Opróżnianie toalety</string>
 
-
     <string name="portInfoButton">Zarezerwuj keję</string>
 
-
-
-
-    
-    
-    
-    
 </resources>
