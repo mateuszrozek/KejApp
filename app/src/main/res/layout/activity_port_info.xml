@@ -1,20 +1,336 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".PortInfoActivity">
 
+    <LinearLayout
+        style="@style/VerticalLinearLayout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:text="DUPA!@#"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/portNameLabel"
+            style="@style/PortInfoTitle"
+
+            android:text="Port 1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/technicalInfoLabel"
+            style="@style/PortInfoSubtitle"
+
+            android:text="@string/technicalInfosLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            style="@style/HorizontalRelativeLayout"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/AttributLabel"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/entranceWidthLabel" />
+
+            <TextView
+                android:id="@+id/entranceWidthLabel"
+                style="@style/ValueLabel"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8.2 m" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/HorizontalRelativeLayout"
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/AttributLabel"
+
+                android:text="@string/entranceDepthLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/entranceDepthLabel"
+                style="@style/ValueLabel"
+
+                android:text="8.2 m"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/HorizontalRelativeLayout"
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/AttributLabel"
+
+                android:text="@string/maxVesselSubmersionLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/maxVesselSubmersionLabel"
+                style="@style/ValueLabel"
+
+                android:text="8.2 m"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/HorizontalRelativeLayout"
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/AttributLabel"
+
+                android:text="@string/maxVesselLengthLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/maxVesselLengthLabel"
+                style="@style/ValueLabel"
+
+                android:text="8.2 m"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/HorizontalRelativeLayout"
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/AttributLabel"
+
+                android:text="@string/maxVesselWidthLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/maxVesselWidthLabel"
+                style="@style/ValueLabel"
+
+                android:text="8.2 m"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/HorizontalRelativeLayout"
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/AttributLabel"
+
+                android:text="@string/dailyWaterLevelUpLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/dailyWaterLevelUpLabel"
+                style="@style/ValueLabel"
+
+                android:text="8.2 m"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/HorizontalRelativeLayout"
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/AttributLabel"
+
+                android:text="@string/dailyWaterLevelDownLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/dailyWaterLevelDownLabel"
+                style="@style/ValueLabel"
+
+                android:text="8.2 m"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <TextView
+            style="@style/PortInfoSubtitle"
+
+            android:text="@string/prices"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            style="@style/HorizontalRelativeLayout"
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/AttributLabel"
+
+                android:text="@string/showerPriceLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/showerPriceLabel"
+                style="@style/ValueLabel"
+
+                android:text="8.2 m"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/HorizontalRelativeLayout"
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/AttributLabel"
+
+                android:text="@string/bathroomPriceLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/bathroomPriceLabel"
+                style="@style/ValueLabel"
+
+                android:text="8.2 m"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/HorizontalRelativeLayout"
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/AttributLabel"
+
+                android:text="@string/electricityPriceLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/electricityPriceLabel"
+                style="@style/ValueLabel"
+
+                android:text="8.2 m"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/HorizontalRelativeLayout"
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/AttributLabel"
+
+                android:text="@string/currentWaterPriceLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/currentWaterPriceLabel"
+                style="@style/ValueLabel"
+
+                android:text="8.2 m"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/HorizontalRelativeLayout"
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/AttributLabel"
+
+                android:text="@string/toiletEmptyingPriceLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/toiletEmptyingPriceLabel"
+                style="@style/ValueLabel"
+
+                android:text="8.2 m"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/portInfoButton"
+            style="@style/OrderQuayButton"
+            android:text="@string/portInfoButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+    </LinearLayout>
+
+</ScrollView>
