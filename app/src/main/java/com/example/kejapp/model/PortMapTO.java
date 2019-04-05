@@ -1,12 +1,26 @@
 package com.example.kejapp.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class PortMapTO implements Serializable {
 
+    @SerializedName("id")
+    @Expose
     private Long id;
+
+    @SerializedName("name")
+    @Expose
     private String name;
+
+    @SerializedName("latitude")
+    @Expose
     private Double latitude;
+
+    @SerializedName("longitude")
+    @Expose
     private Double longitude;
 
     public Long getId() {

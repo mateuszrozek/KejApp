@@ -6,8 +6,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClientInstance {
 
     private static Retrofit retrofit;
-//    private static final String BASE_URL = "kejapp/api/v1";
-    private static final String BASE_URL = "https://www.google.com/";
+//    private static final String BASE_URL = "http://10.0.2.2:8080/kejapp/api/v1/";
+    private static final String BASE_URL = "http://192.168.43.xxx:8080/kejapp/api/v1/";
+//    private static final String BASE_URL = "https://www.google.com/";
 
 
     public static Retrofit getRetrofitInstance() {

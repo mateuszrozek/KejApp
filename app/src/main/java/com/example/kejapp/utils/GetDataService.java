@@ -9,6 +9,6 @@ import retrofit2.http.GET;
 
 public interface GetDataService {
 
-    @GET("/ports")
+    @GET("ports")
     Call<List<PortMapTO>> getAllPortMapTOs();
 }
