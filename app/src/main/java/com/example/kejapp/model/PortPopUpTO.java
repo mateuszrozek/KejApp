@@ -1,7 +1,8 @@
 package com.example.kejapp.model;
 
-public class PortPopUpTO {
+import java.io.Serializable;
 
+public class PortPopUpTO implements Serializable {
 
     private Long id;
     private String name;

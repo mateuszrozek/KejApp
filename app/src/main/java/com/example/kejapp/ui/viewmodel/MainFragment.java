@@ -90,7 +90,7 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
         });
 
 
-        PortMapTO portMapTO = new PortMapTO();
+        final PortMapTO portMapTO = new PortMapTO();
         portMapTO.setId(1L);
         portMapTO.setName("Wilkasy");
 
@@ -103,7 +103,7 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
             @Override
             public void onInfoWindowClick(Marker marker) {
                 Intent intent = new Intent(getActivity(), PortInfoActivity.class);
-                intent.putExtra("object 1", "dupa");
+                intent.putExtra("port", portMapTO);
                 startActivity(intent);
             }
         });

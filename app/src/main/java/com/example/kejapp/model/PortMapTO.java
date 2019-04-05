@@ -1,6 +1,8 @@
 package com.example.kejapp.model;
 
-public class PortMapTO {
+import java.io.Serializable;
+
+public class PortMapTO implements Serializable {
 
     private Long id;
     private String name;
