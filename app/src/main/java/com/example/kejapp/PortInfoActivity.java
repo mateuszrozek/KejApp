@@ -9,10 +9,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.kejapp.model.PortMapTO;
-import com.example.kejapp.model.PortPopUpTO;
+import com.example.kejapp.model.PortInfoTO;
 
 public class PortInfoActivity extends AppCompatActivity {
 
+
+    TextView portNameLabel;
     TextView entranceWidthLabel;
     TextView entranceDepthLabel;
     TextView maxVesselSubmersionLabel;
@@ -29,7 +31,7 @@ public class PortInfoActivity extends AppCompatActivity {
     Button portInfoButton;
 
     PortMapTO portMapTO;
-    PortPopUpTO portPopUpTO;
+    PortInfoTO portInfoTO;
     Intent intent;
 
     @Override
@@ -39,8 +41,8 @@ public class PortInfoActivity extends AppCompatActivity {
         
         initializeGlobalData();
         bindTextViews();
-        portPopUpTO = new PortPopUpTO();
-        fillTextViews(portPopUpTO);
+        portInfoTO = new PortInfoTO();
+        fillTextViews(portInfoTO);
 
         portInfoButton = findViewById(R.id.portInfoButton);
         portInfoButton.setOnClickListener(new View.OnClickListener() {
@@ -53,8 +55,7 @@ public class PortInfoActivity extends AppCompatActivity {
         });
     }
 
-    private void fillTextViews(PortPopUpTO portPopUpTO) {
-    }
+
 
     private void initializeGlobalData() {
         intent = getIntent();
@@ -62,18 +63,23 @@ public class PortInfoActivity extends AppCompatActivity {
     }
 
     private void bindTextViews() {
+        portNameLabel = findViewById(R.id.portNameLabel);
+        entranceWidthLabel = findViewById(R.id.entranceWidthLabel);
+        entranceDepthLabel = findViewById(R.id.entranceDepthLabel);
+        maxVesselSubmersionLabel = findViewById(R.id.maxVesselSubmersionLabel);
+        maxVesselLengthLabel = findViewById(R.id.maxVesselLengthLabel);
+        maxVesselWidthLabel = findViewById(R.id.maxVesselWidthLabel);
+        dailyWaterLevelUpLabel = findViewById(R.id.dailyWaterLevelUpLabel);
+        dailyWaterLevelDownLabel = findViewById(R.id.dailyWaterLevelDownLabel);
+        showerPriceLabel = findViewById(R.id.showerPriceLabel);
+        bathroomPriceLabel = findViewById(R.id.bathroomPriceLabel);
+        electricityPriceLabel = findViewById(R.id.electricityPriceLabel);
+        currentWaterPriceLabel = findViewById(R.id.currentWaterPriceLabel);
+        toiletEmptyingPriceLabel = findViewById(R.id.toiletEmptyingPriceLabel);
+    }
 
-         entranceWidthLabel = findViewById(R.id.entranceWidthLabel);
-         entranceDepthLabel = findViewById(R.id.entranceDepthLabel);
-         maxVesselSubmersionLabel = findViewById(R.id.maxVesselSubmersionLabel);
-         maxVesselLengthLabel = findViewById(R.id.maxVesselLengthLabel);
-         maxVesselWidthLabel = findViewById(R.id.maxVesselWidthLabel);
-         dailyWaterLevelUpLabel = findViewById(R.id.dailyWaterLevelUpLabel);
-         dailyWaterLevelDownLabel = findViewById(R.id.dailyWaterLevelDownLabel);
-         showerPriceLabel = findViewById(R.id.showerPriceLabel);
-         bathroomPriceLabel = findViewById(R.id.bathroomPriceLabel);
-         electricityPriceLabel = findViewById(R.id.electricityPriceLabel);
-         currentWaterPriceLabel = findViewById(R.id.currentWaterPriceLabel);
-         toiletEmptyingPriceLabel = findViewById(R.id.toiletEmptyingPriceLabel);
+    private void fillTextViews(PortInfoTO portInfoTO) {
+        portNameLabel.setText(portMapTO.getName());
+
     }
 }

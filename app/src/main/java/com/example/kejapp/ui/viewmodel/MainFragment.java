@@ -81,9 +81,18 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-
-        LatLng wilkasy = new LatLng(portsMapTO.get(0).getLongitude(), portsMapTO.get(0).getLatitude());
-        float zoomLevel = (float) 12.0;
+        if (portsMapTO!=null){
+            loadMarkers(googleMap);
+        }
+        else {
+            PortMapTO wilkasyDummy = new PortMapTO();
+            wilkasyDummy.setName("WilkasyDummy");
+            wilkasyDummy.setId(1L);
+            wilkasyDummy.setLongitude(54.009);
+            wilkasyDummy.setLatitude(21.736);
+            Marker dummyMarker = googleMap.addMarker(new MarkerOptions().position(new LatLng(wilkasyDummy.getLongitude(), wilkasyDummy.getLatitude())).title(wilkasyDummy.getName()));
+            dummyMarker.setTag(wilkasyDummy);
+        }
 
         CustomInfoWindowGoogleMap customInfoWindow = new CustomInfoWindowGoogleMap(getActivity());
         googleMap.setInfoWindowAdapter(customInfoWindow);
@@ -91,7 +100,7 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
             @Override
             public void onInfoWindowClick(Marker marker) {
                 Intent intent = new Intent(getActivity(), PortInfoActivity.class);
-                intent.putExtra("port", portsMapTO.get(0));
+                intent.putExtra("port", (PortMapTO)marker.getTag());
                 startActivity(intent);
             }
         });
@@ -101,14 +110,22 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
                 Intent intent = new Intent(getActivity(), ChooseDeckActivity.class);
                 intent.putExtra("object 1", "dupa");
                 startActivity(intent);
-
             }
         });
 
-        Marker marker = googleMap.addMarker(new MarkerOptions().position(wilkasy).title("Wilkasy"));
-        marker.setTag(portsMapTO.get(0));
-
+        //set position for work purposes
+        LatLng wilkasy = new LatLng(54.009, 21.736);
+        float zoomLevel = (float) 12.0;
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(wilkasy, zoomLevel));
+    }
+
+    private void loadMarkers(GoogleMap googleMap) {
+        for (PortMapTO port : portsMapTO) {
+            LatLng latLng = new LatLng(port.getLongitude(), port.getLatitude());
+            String portName = port.getName();
+            Marker marker = googleMap.addMarker(new MarkerOptions().position(latLng).title(portName));
+            marker.setTag(port);
+        }
     }
 
     private void create() {
