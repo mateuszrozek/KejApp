@@ -50,7 +50,7 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        create();
+        loadPortsFromDB();
         View v = inflater.inflate(R.layout.fragment_location_info, container,
                 false);
         MapView mapView = v.findViewById(R.id.mapView);
@@ -85,13 +85,7 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
             loadMarkers(googleMap);
         }
         else {
-            PortMapTO wilkasyDummy = new PortMapTO();
-            wilkasyDummy.setName("WilkasyDummy");
-            wilkasyDummy.setId(1L);
-            wilkasyDummy.setLatitude(54.009);
-            wilkasyDummy.setLongitude(21.736);
-            Marker dummyMarker = googleMap.addMarker(new MarkerOptions().position(new LatLng(wilkasyDummy.getLatitude(), wilkasyDummy.getLongitude())).title(wilkasyDummy.getName()));
-            dummyMarker.setTag(wilkasyDummy);
+            loadDummyMarker(googleMap);
         }
 
         CustomInfoWindowGoogleMap customInfoWindow = new CustomInfoWindowGoogleMap(getActivity());
@@ -119,6 +113,16 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(wilkasy, zoomLevel));
     }
 
+    private void loadDummyMarker(GoogleMap googleMap) {
+        PortMapTO wilkasyDummy = new PortMapTO();
+        wilkasyDummy.setName("WilkasyDummy");
+        wilkasyDummy.setId(1L);
+        wilkasyDummy.setLatitude(54.009);
+        wilkasyDummy.setLongitude(21.736);
+        Marker dummyMarker = googleMap.addMarker(new MarkerOptions().position(new LatLng(wilkasyDummy.getLatitude(), wilkasyDummy.getLongitude())).title(wilkasyDummy.getName()));
+        dummyMarker.setTag(wilkasyDummy);
+    }
+
     private void loadMarkers(GoogleMap googleMap) {
         for (PortMapTO port : portsMapTO) {
             LatLng latLng = new LatLng(port.getLatitude(), port.getLongitude());
@@ -128,7 +132,7 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
         }
     }
 
-    private void create() {
+    private void loadPortsFromDB() {
         Call<List<PortMapTO>> call = service.findAllPorts();
         call.enqueue(new Callback<List<PortMapTO>>() {
 
