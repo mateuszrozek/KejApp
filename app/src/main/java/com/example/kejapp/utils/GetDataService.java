@@ -14,6 +14,9 @@ public interface GetDataService {
     @GET("ports")
     Call<List<PortMapTO>> findAllPorts();
 
-    @GET("port/{id}")
-    Call<PortInfoTO> findPortById(@Path("id") Long id);
+    @GET("quays/{portId}")
+    Call<PortInfoTO> findQuaysById(@Path("portId") Long portId);
+
+    @GET("ports/{portId}")
+    Call<PortInfoTO> findPortById(@Path("portId") Long portId);
 }
