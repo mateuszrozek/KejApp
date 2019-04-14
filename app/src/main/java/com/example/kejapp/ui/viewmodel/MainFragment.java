@@ -88,9 +88,9 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
             PortMapTO wilkasyDummy = new PortMapTO();
             wilkasyDummy.setName("WilkasyDummy");
             wilkasyDummy.setId(1L);
-            wilkasyDummy.setLongitude(54.009);
-            wilkasyDummy.setLatitude(21.736);
-            Marker dummyMarker = googleMap.addMarker(new MarkerOptions().position(new LatLng(wilkasyDummy.getLongitude(), wilkasyDummy.getLatitude())).title(wilkasyDummy.getName()));
+            wilkasyDummy.setLatitude(54.009);
+            wilkasyDummy.setLongitude(21.736);
+            Marker dummyMarker = googleMap.addMarker(new MarkerOptions().position(new LatLng(wilkasyDummy.getLatitude(), wilkasyDummy.getLongitude())).title(wilkasyDummy.getName()));
             dummyMarker.setTag(wilkasyDummy);
         }
 
@@ -121,7 +121,7 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
 
     private void loadMarkers(GoogleMap googleMap) {
         for (PortMapTO port : portsMapTO) {
-            LatLng latLng = new LatLng(port.getLongitude(), port.getLatitude());
+            LatLng latLng = new LatLng(port.getLatitude(), port.getLongitude());
             String portName = port.getName();
             Marker marker = googleMap.addMarker(new MarkerOptions().position(latLng).title(portName));
             marker.setTag(port);
@@ -129,7 +129,7 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
     }
 
     private void create() {
-        Call<List<PortMapTO>> call = service.getAllPortMapTOs();
+        Call<List<PortMapTO>> call = service.findAllPorts();
         call.enqueue(new Callback<List<PortMapTO>>() {
 
             @Override
