@@ -3,7 +3,9 @@ package com.example.kejapp.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class QuayTO {
+import java.io.Serializable;
+
+public class QuayTO implements Serializable {
 
     @SerializedName("id")
     @Expose

@@ -1,5 +1,6 @@
 package com.example.kejapp.utils;
 
+import com.example.kejapp.model.PierTO;
 import com.example.kejapp.model.PortInfoTO;
 import com.example.kejapp.model.PortMapTO;
 import com.example.kejapp.model.QuayTO;
@@ -17,6 +18,9 @@ public interface GetDataService {
 
     @GET("quays/{portId}")
     Call<List<QuayTO>> findQuaysById(@Path("portId") Long portId);
+
+    @GET("piers/{portId}")
+    Call<List<PierTO>> findPiersById(@Path("portId") Long portId);
 
     @GET("ports/{portId}")
     Call<PortInfoTO> findPortById(@Path("portId") Long portId);

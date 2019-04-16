@@ -3,44 +3,84 @@ package com.example.kejapp.view;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import android.content.Intent;
 import android.os.Bundle;
-
+import android.widget.Toast;
 import com.example.kejapp.R;
-import com.example.kejapp.utils.Deck;
+import com.example.kejapp.model.PierTO;
+import com.example.kejapp.model.PortInfoTO;
 import com.example.kejapp.utils.DeckListAdapter;
+import com.example.kejapp.utils.GetDataService;
+import com.example.kejapp.utils.RetrofitClientInstance;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ChooseDeckActivity extends AppCompatActivity {
 
-    ArrayList<Deck> decks;
-//    ArrayList<Quay> quays;
-
-    /*TODO
-    initialize decksto avoid NPE - additional service needed?
-    * */
-
+    Intent intent;
+    PortInfoTO portInfoTO;
+    List<PierTO> pierTOS;
+    private GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_deck);
 
-        mockDecks(); //mock
+        initializeGlobalData();
+        loadData(); //loadFromDB or mockDecks
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        DeckListAdapter adapter = new DeckListAdapter(decks);
+        DeckListAdapter adapter = new DeckListAdapter(pierTOS);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
     }
 
-    private void mockDecks() {
-        decks = new ArrayList<>();
+    private void initializeGlobalData() {
 
-        for (int i = 0; i < 15; i++) {
-            decks.add(new Deck(i+1, i+6));
+        intent = getIntent();
+        portInfoTO = (PortInfoTO) intent.getSerializableExtra("portInfoTO");
+    }
+
+    private void loadData() {
+
+        loadDecksFromDB();
+        if (pierTOS ==null){
+            mockDecks();
+        }
+    }
+
+    private void loadDecksFromDB() {
+
+        Call<List<PierTO>> call = service.findPiersById(portInfoTO.getId());
+        call.enqueue(new Callback<List<PierTO>>() {
+
+            @Override
+            public void onResponse(Call<List<PierTO>> call, Response<List<PierTO>> response) {
+                pierTOS = response.body();
+            }
+
+            @Override
+            public void onFailure(Call<List<PierTO>> call, Throwable t) {
+                Toast.makeText(getApplication(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+    private void mockDecks() {
+        pierTOS = new ArrayList<>();
+
+        for (int i = 1; i < 15; i++) {
+            PierTO pierTO = new PierTO();
+            pierTO.setPierId("A");
+            pierTO.setPortId(Long.valueOf(i));
+            pierTOS.add(pierTO);
         }
     }
 }

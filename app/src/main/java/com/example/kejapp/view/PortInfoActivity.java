@@ -55,13 +55,17 @@ public class PortInfoActivity extends AppCompatActivity {
         if (portInfoTO!=null){
             fillTextViews(portInfoTO);
         }
+        else {
+            portInfoTO = new PortInfoTO();
+            portInfoTO.setId(1L);
+        }
 
         portInfoButton = findViewById(R.id.portInfoButton);
         portInfoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(PortInfoActivity.this, ChooseDeckActivity.class);
-                intent.putExtra("object 1", "dupa");
+                intent.putExtra("portInfoTO", portInfoTO);
                 startActivity(intent);
             }
         });
