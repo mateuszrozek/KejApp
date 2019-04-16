@@ -1,23 +1,19 @@
 package com.example.kejapp.ui.viewmodel;
 
 import androidx.lifecycle.ViewModelProviders;
-
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
-import com.example.kejapp.ChooseDeckActivity;
-import com.example.kejapp.PortInfoActivity;
+import com.example.kejapp.view.ChooseDeckActivity;
+import com.example.kejapp.view.PortInfoActivity;
 import com.example.kejapp.R;
 import com.example.kejapp.model.PortMapTO;
 import com.example.kejapp.utils.CustomInfoWindowGoogleMap;
@@ -31,7 +27,6 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-
 import java.util.List;
 
 

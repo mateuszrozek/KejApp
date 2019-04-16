@@ -1,17 +1,16 @@
-package com.example.kejapp;
+package com.example.kejapp.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import com.example.kejapp.R;
 import com.example.kejapp.model.PortMapTO;
 import com.example.kejapp.model.PortInfoTO;
 import com.example.kejapp.utils.GetDataService;
@@ -109,6 +108,7 @@ public class PortInfoActivity extends AppCompatActivity {
 
     private PortInfoTO loadPortInfoTO(long id) {
         Call<PortInfoTO> call = service.findPortById(id);
+
         call.enqueue(new Callback<PortInfoTO>() {
 
             @Override
