@@ -32,7 +32,7 @@
         android:minWidth="200dp"
         android:minHeight="200dp"
         android:scaleType="fitXY"
-        android:src="@drawable/wilkasy_piers_letters"
+        android:src="@drawable/wilkasy_piers"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewChooseDeck" />
