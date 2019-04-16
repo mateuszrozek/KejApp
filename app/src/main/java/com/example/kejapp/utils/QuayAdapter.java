@@ -7,12 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-
 import com.example.kejapp.R;
 import com.example.kejapp.model.QuayTO;
-import com.example.kejapp.view.ChooseQuayActivity;
 import com.example.kejapp.view.QuayInfoActivity;
-
 import java.util.List;
 
 public class QuayAdapter extends BaseAdapter {
