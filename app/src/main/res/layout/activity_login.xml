@@ -21,7 +21,8 @@
             android:layout_height="wrap_content"
             android:paddingTop="20dp"
             android:text="Logowanie"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
         <RelativeLayout
             style="@style/HorizontalRelativeLayout"
