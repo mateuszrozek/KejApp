@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import com.example.kejapp.R;
 import com.example.kejapp.view.ChooseQuayActivity;
@@ -22,8 +21,20 @@ public class DeckListAdapter extends  RecyclerView.Adapter<DeckListAdapter.ViewH
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View listItem= layoutInflater.inflate(R.layout.list_item, parent, false);
+        View listItem = layoutInflater.inflate(R.layout.list_item, parent, false);
         ViewHolder viewHolder = new ViewHolder(listItem);
+
+
+        listItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(view.getContext(), ChooseQuayActivity.class);
+                intent.putExtra("object 1", "dupa");
+                view.getContext().startActivity(intent);
+            }
+        });
+
         return viewHolder;
     }
 
@@ -35,15 +46,15 @@ public class DeckListAdapter extends  RecyclerView.Adapter<DeckListAdapter.ViewH
         holder.deckNumberLabel.setText(mapToLetter(position));
         holder.freeQuaysLabel.setText(printAmountOfQuays(deck.getFreeQuays(), deck.getTotalQuays()));
 
-        holder.chooseQuayButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(view.getContext(), ChooseQuayActivity.class);
-                intent.putExtra("object 1", "dupa");
-                view.getContext().startActivity(intent);
-            }
-        });
+//        holder.chooseQuayButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                Intent intent = new Intent(view.getContext(), ChooseQuayActivity.class);
+//                intent.putExtra("object 1", "dupa");
+//                view.getContext().startActivity(intent);
+//            }
+//        });
     }
 
     private String printAmountOfQuays(int freeQuays, int totalQuays) {
@@ -67,13 +78,13 @@ public class DeckListAdapter extends  RecyclerView.Adapter<DeckListAdapter.ViewH
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView deckNumberLabel;
         public TextView freeQuaysLabel;
-        public Button chooseQuayButton;
+//        public Button chooseQuayButton;
 
         public ViewHolder(View itemView) {
             super(itemView);
             this.deckNumberLabel = itemView.findViewById(R.id.deckNumberLabel);
             this.freeQuaysLabel = itemView.findViewById(R.id.freeQuaysLabel);
-            this.chooseQuayButton = itemView.findViewById(R.id.chooseQuayButton);
+//            this.chooseQuayButton = itemView.findViewById(R.id.chooseQuayButton);
         }
     }
 }

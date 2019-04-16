@@ -1,6 +1,7 @@
 package com.example.kejapp.utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import android.widget.TextView;
 
 import com.example.kejapp.R;
 import com.example.kejapp.model.QuayTO;
+import com.example.kejapp.view.ChooseQuayActivity;
+import com.example.kejapp.view.QuayInfoActivity;
 
 import java.util.List;
 
@@ -21,7 +24,6 @@ public class QuayAdapter extends BaseAdapter {
         this.context = context;
         this.quays = quays;
     }
-
 
     @Override
     public int getCount() {
@@ -48,11 +50,20 @@ public class QuayAdapter extends BaseAdapter {
 
         if (view == null) {
 
-            gridView = new View(context);
-
             gridView = inflater.inflate(R.layout.choose_quay_item, null);
-            TextView textViewQuay = gridView.findViewById(R.id.textViewQuay);
+            final TextView textViewQuay = gridView.findViewById(R.id.textViewQuay);
             textViewQuay.setText(quays.get(position).getQuayNumber().toString());
+
+            textViewQuay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Intent intent = new Intent(view.getContext(), QuayInfoActivity.class);
+                    intent.putExtra("quay", textViewQuay.getText());
+                    view.getContext().startActivity(intent);
+                }
+            });
+
         } else {
             gridView = view;
         }
