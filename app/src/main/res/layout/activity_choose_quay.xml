@@ -32,7 +32,7 @@
         android:minWidth="200dp"
         android:minHeight="200dp"
         android:scaleType="fitXY"
-        android:src="@drawable/wilkasy_piers_letters"
+        android:src="@drawable/pier"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewChooseQuay" />
@@ -43,10 +43,10 @@
         android:layout_height="wrap_content"
 
         android:gravity="center"
-        android:columnWidth="100dp"
+        android:columnWidth="50dp"
         android:numColumns="auto_fit"
-        android:verticalSpacing="24dp"
-        android:horizontalSpacing="10dp"
+        android:verticalSpacing="5dp"
+        android:horizontalSpacing="5dp"
         android:stretchMode="spacingWidthUniform"
 
         android:layout_marginStart="8dp"
