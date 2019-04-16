@@ -20,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.ChooseQuayActivity"></activity>
+        <activity android:name=".view.LoginActivity"></activity>
+        <activity android:name=".view.ChooseQuayActivity" />
         <activity android:name=".view.ChooseDeckActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
