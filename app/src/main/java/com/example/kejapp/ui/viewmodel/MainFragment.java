@@ -2,6 +2,7 @@ package com.example.kejapp.ui.viewmodel;
 
 import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;

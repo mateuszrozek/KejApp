@@ -297,7 +297,7 @@
         </RelativeLayout>
 
         <Button
-            android:id="@+id/portInfoButton"
+            android:id="@+id/registerButton"
             style="@style/OrderQuayButton"
             android:text="Zarejestruj"
             android:layout_width="wrap_content"

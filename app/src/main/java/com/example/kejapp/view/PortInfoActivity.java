@@ -4,7 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +20,7 @@ import com.example.kejapp.model.PortMapTO;
 import com.example.kejapp.model.PortInfoTO;
 import com.example.kejapp.utils.GetDataService;
 import com.example.kejapp.utils.RetrofitClientInstance;
+import com.google.android.gms.common.util.Strings;
 
 
 public class PortInfoActivity extends AppCompatActivity {
@@ -40,6 +46,10 @@ public class PortInfoActivity extends AppCompatActivity {
     private PortInfoTO portInfoTO;
     private Intent intent;
 
+    private static final String PREFERENCES_NAME = "myPreferences";
+    private static final String PREFERENCES_TEXT_FIELD = "userEmail";
+    private SharedPreferences preferences;
+
     private GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
 
 
@@ -47,6 +57,7 @@ public class PortInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_port_info);
+        preferences = getSharedPreferences(PREFERENCES_NAME, Activity.MODE_PRIVATE);
         
         initializeGlobalData();
         bindTextViews();
@@ -64,11 +75,46 @@ public class PortInfoActivity extends AppCompatActivity {
         portInfoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PortInfoActivity.this, ChooseDeckActivity.class);
-                intent.putExtra("portInfoTO", portInfoTO);
-                startActivity(intent);
+                String tokenFromSharedPreferences = preferences.getString(PREFERENCES_TEXT_FIELD, "");
+                if(Strings.isEmptyOrWhitespace(tokenFromSharedPreferences)){
+                    showWarning();
+                } else {
+                    Intent intent = new Intent(PortInfoActivity.this, ChooseDeckActivity.class);
+                    intent.putExtra("portInfoTO", portInfoTO);
+                    startActivity(intent);
+                }
+
+
             }
         });
+    }
+
+    public void showWarning(){
+
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(PortInfoActivity.this);
+        builder1.setMessage("Opcja dostępna tylko dla zalogowanych użytkoników.");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "ZALOGUJ",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent intent = new Intent(PortInfoActivity.this, LoginActivity.class);
+                        intent.putExtra("portInfoTO", portInfoTO);
+                        startActivity(intent);
+                    }
+                });
+        builder1.setNegativeButton(
+                "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+
+
     }
 
     private void initializeGlobalData() {
@@ -122,7 +168,7 @@ public class PortInfoActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<PortInfoTO> call, Throwable t) {
-                Toast.makeText(getApplication(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplication(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }
         });
 
