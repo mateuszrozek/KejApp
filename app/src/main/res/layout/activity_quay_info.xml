@@ -1,19 +1,408 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".view.QuayInfoActivity">
 
-    <TextView
-        android:id="@+id/textViewQuayInfo"
-        android:text="mock tekst"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        style="@style/VerticalLinearLayout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/portNameTextView"
+            style="@style/PortInfoTitle"
+
+            android:text="Port 1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/technicalInfoLabel"
+            style="@style/PortInfoSubtitle"
+
+            android:text="@string/technicalInfosLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            style="@style/HorizontalRelativeLayout"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/AttributLabel"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/latitudeTextView" />
+
+            <TextView
+                android:id="@+id/latitudeTextView"
+                style="@style/ValueLabel"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8.2 m" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/HorizontalRelativeLayout"
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/AttributLabel"
+
+                android:text="@string/longitudeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/longitudeTextView"
+                style="@style/ValueLabel"
+
+                android:text="8.2 m"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/HorizontalRelativeLayout"
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/AttributLabel"
+
+                android:text="@string/pierTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/pierTextView"
+                style="@style/ValueLabel"
+
+                android:text="8.2 m"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/HorizontalRelativeLayout"
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/AttributLabel"
+
+                android:text="@string/quayNumberTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/quayNumberTextView"
+                style="@style/ValueLabel"
+
+                android:text="8.2 m"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/HorizontalRelativeLayout"
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/AttributLabel"
+
+                android:text="@string/maxVesselLengthTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/maxVesselLengthTextView"
+                style="@style/ValueLabel"
+
+                android:text="8.2 m"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/HorizontalRelativeLayout"
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/AttributLabel"
+
+                android:text="@string/maxVesselWidthTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/maxVesselWidthTextView"
+                style="@style/ValueLabel"
+
+                android:text="8.2 m"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/HorizontalRelativeLayout"
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/AttributLabel"
+
+                android:text="@string/maxVesselSubmersionTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/maxVesselSubmersionTextView"
+                style="@style/ValueLabel"
+
+                android:text="8.2 m"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <TextView
+            style="@style/PortInfoSubtitle"
+
+            android:text="@string/prices"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            style="@style/HorizontalRelativeLayout"
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/AttributLabel"
+
+                android:text="@string/mooringAvailableTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/mooringAvailableTextView"
+                style="@style/ValueLabel"
+
+                android:text="8.2 m"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/HorizontalRelativeLayout"
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/AttributLabel"
+
+                android:text="@string/mooringTypeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/mooringTypeTextView"
+                style="@style/ValueLabel"
+
+                android:text="8.2 m"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/HorizontalRelativeLayout"
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/AttributLabel"
+
+                android:text="@string/buoyAvailableTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/buoyAvailableTextView"
+                style="@style/ValueLabel"
+
+                android:text="8.2 m"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/HorizontalRelativeLayout"
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/AttributLabel"
+
+                android:text="@string/anchorRequiredTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/anchorRequiredTextView"
+                style="@style/ValueLabel"
+
+                android:text="8.2 m"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/HorizontalRelativeLayout"
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/AttributLabel"
+
+                android:text="@string/electricityAvailableTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/electricityAvailableTextView"
+                style="@style/ValueLabel"
+
+                android:text="8.2 m"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/HorizontalRelativeLayout"
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/AttributLabel"
+
+                android:text="@string/currentWaterAvailableTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/currentWaterAvailableTextView"
+                style="@style/ValueLabel"
+
+                android:text="8.2 m"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/HorizontalRelativeLayout"
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/AttributLabel"
+
+                android:text="@string/calculatedPriceTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/calculatedPriceTextView"
+                style="@style/ValueLabel"
+
+                android:text="8.2 m"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/HorizontalRelativeLayout"
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/AttributLabel"
+
+                android:text="@string/notesTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/notesTextView"
+                style="@style/ValueLabel"
+
+                android:text="8.2 m"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/quayOrderButton"
+            style="@style/OrderQuayButton"
+            android:text="@string/quayOrderButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+    </LinearLayout>
+
+</ScrollView>

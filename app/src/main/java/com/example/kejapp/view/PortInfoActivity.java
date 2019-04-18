@@ -22,6 +22,9 @@ import com.example.kejapp.utils.GetDataService;
 import com.example.kejapp.utils.RetrofitClientInstance;
 import com.google.android.gms.common.util.Strings;
 
+import java.io.IOException;
+import java.util.List;
+
 public class PortInfoActivity extends AppCompatActivity {
 
 
@@ -53,12 +56,13 @@ public class PortInfoActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected synchronized void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_port_info);
         preferences = getSharedPreferences(PREFERENCES_NAME, Activity.MODE_PRIVATE);
-        
+
         initializeGlobalData();
+
         bindTextViews();
 
         if (portInfoTO!=null){
@@ -81,8 +85,6 @@ public class PortInfoActivity extends AppCompatActivity {
                     intent.putExtra("portInfoTO", portInfoTO);
                     startActivity(intent);
                 }
-
-
             }
         });
     }
@@ -111,8 +113,6 @@ public class PortInfoActivity extends AppCompatActivity {
                 });
         AlertDialog alert11 = builder1.create();
         alert11.show();
-
-
     }
 
     private void initializeGlobalData() {

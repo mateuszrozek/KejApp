@@ -51,15 +51,15 @@ public class ChooseDeckActivity extends AppCompatActivity {
         imageView = findViewById(R.id.imageView);
         int id = portInfoTO.getId().intValue();
         switch (id){
-            case 1: imageView.setBackgroundResource(R.drawable.wilkasy_piers);
+            case 1: imageView.setImageResource(R.drawable.wilkasy_piers);
                 break;
-            case 2: imageView.setBackgroundResource(R.drawable.mikolajki_piers);
+            case 2: imageView.setImageResource(R.drawable.mikolajki_piers);
                 break;
-            case 3: imageView.setBackgroundResource(R.drawable.wegorzewo_piers);
+            case 3: imageView.setImageResource(R.drawable.wegorzewo_piers);
                 break;
             case 4: imageView.setImageResource(R.drawable.gizycko_piers);
                 break;
-            case 5: imageView.setBackgroundResource(R.drawable.ruciane_piers);
+            case 5: imageView.setImageResource(R.drawable.ruciane_piers);
                 break;
         }
     }

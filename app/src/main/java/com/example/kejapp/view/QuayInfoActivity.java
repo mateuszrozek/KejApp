@@ -44,30 +44,6 @@ public class QuayInfoActivity extends AppCompatActivity {
 
         initializeGlobalData();
         bindTextViews();
-
-        textViewQuayInfo = findViewById(R.id.textViewQuayInfo);
-        textViewQuayInfo.setText(quayInfoTO.getQuayNumber().toString());
-    }
-
-    private void bindTextViews() {
-
-
-//        portNameTextView;
-//        latitudeTextView;
-//        longitudeTextView;
-//        pierTextView;
-//        quayNumberTextView;
-//        maxVesselLengthTextView;
-//        maxVesselWidthTextView;
-//        maxVesselSubmersionTextView;
-//        mooringAvailableTextView;
-//        mooringTypeTextView;
-//        buoyAvailableTextView;
-//        anchorRequiredTextView;
-//        electricityAvailableTextView;
-//        currentWaterAvailableTextView;
-//        calculatedPriceTextView;
-//        notesTextView;
     }
 
     private void initializeGlobalData() {
@@ -82,5 +58,25 @@ public class QuayInfoActivity extends AppCompatActivity {
 
         quayInfoTO = new QuayInfoTO();
         quayInfoTO.setQuayNumber(quayId.doubleValue());
+    }
+
+    private void bindTextViews() {
+
+        portNameTextView = findViewById(R.id.portNameTextView);
+        latitudeTextView = findViewById(R.id.latitudeTextView);
+        longitudeTextView = findViewById(R.id.longitudeTextView);
+        pierTextView = findViewById(R.id.pierTextView);
+        quayNumberTextView = findViewById(R.id.quayNumberTextView);
+        maxVesselLengthTextView = findViewById(R.id.maxVesselLengthTextView);
+        maxVesselWidthTextView = findViewById(R.id.maxVesselWidthTextView);
+        maxVesselSubmersionTextView = findViewById(R.id.maxVesselSubmersionTextView);
+        mooringAvailableTextView = findViewById(R.id.mooringAvailableTextView);
+        mooringTypeTextView = findViewById(R.id.mooringTypeTextView);
+        buoyAvailableTextView = findViewById(R.id.buoyAvailableTextView);
+        anchorRequiredTextView = findViewById(R.id.anchorRequiredTextView);
+        electricityAvailableTextView = findViewById(R.id.electricityAvailableTextView);
+        currentWaterAvailableTextView = findViewById(R.id.currentWaterAvailableTextView);
+        calculatedPriceTextView = findViewById(R.id.calculatedPriceTextView);
+        notesTextView = findViewById(R.id.notesTextView);
     }
 }

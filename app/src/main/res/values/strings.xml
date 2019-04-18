@@ -22,4 +22,31 @@
 
     <string name="portInfoButton">Zarezerwuj keję</string>
 
+    <string name="portNameTextView">Nazwa portu</string>
+    <string name="latitudeTextView">Szerokość geogr.</string>
+    <string name="longitudeTextView">Długość geogr.</string>
+    <string name="pierTextView">Pomost</string>
+    <string name="quayNumberTextView">Numer keji</string>
+    <string name="maxVesselLengthTextView">Max. dozw. długość łódki</string>
+    <string name="maxVesselWidthTextView">Max. dozw. szerokość łódki</string>
+    <string name="maxVesselSubmersionTextView">Max. dozw. poziom zanurzenia</string>
+    <string name="mooringAvailableTextView">Dostępność muringu</string>
+    <string name="mooringTypeTextView">Typ muringu</string>
+    <string name="buoyAvailableTextView">Dostępność boji</string>
+    <string name="anchorRequiredTextView">Wymagana kotwica</string>
+    <string name="electricityAvailableTextView">Dostępność prądu</string>
+    <string name="currentWaterAvailableTextView">Bieżąca woda</string>
+    <string name="calculatedPriceTextView">Wyliczona sum. cena</string>
+    <string name="notesTextView">Komentarz</string>
+
+    <string name="quayOrderButton">Rezerwuj keję!</string>
+
+
+
+
+
+
+
+
+
 </resources>
