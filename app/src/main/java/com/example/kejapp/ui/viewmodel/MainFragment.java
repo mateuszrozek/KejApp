@@ -90,7 +90,7 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
             @Override
             public void onInfoWindowClick(Marker marker) {
                 Intent intent = new Intent(getActivity(), PortInfoActivity.class);
-                intent.putExtra("port", (PortMapTO)marker.getTag());
+                intent.putExtra("portMapTO", (PortMapTO)marker.getTag());
                 startActivity(intent);
             }
         });

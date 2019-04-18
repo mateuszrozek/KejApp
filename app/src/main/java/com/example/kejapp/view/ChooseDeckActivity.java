@@ -8,6 +8,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.Toast;
 import com.example.kejapp.R;
 import com.example.kejapp.model.PierTO;
@@ -25,11 +26,13 @@ public class ChooseDeckActivity extends AppCompatActivity {
     PortInfoTO portInfoTO;
     List<PierTO> pierTOS;
     private GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_deck);
+
 
         initializeGlobalData();
         loadData(); //loadFromDB or mockDecks
@@ -45,6 +48,20 @@ public class ChooseDeckActivity extends AppCompatActivity {
 
         intent = getIntent();
         portInfoTO = (PortInfoTO) intent.getSerializableExtra("portInfoTO");
+        imageView = findViewById(R.id.imageView);
+        int id = portInfoTO.getId().intValue();
+        switch (id){
+            case 1: imageView.setBackgroundResource(R.drawable.wilkasy_piers);
+                break;
+            case 2: imageView.setBackgroundResource(R.drawable.mikolajki_piers);
+                break;
+            case 3: imageView.setBackgroundResource(R.drawable.wegorzewo_piers);
+                break;
+            case 4: imageView.setImageResource(R.drawable.gizycko_piers);
+                break;
+            case 5: imageView.setBackgroundResource(R.drawable.ruciane_piers);
+                break;
+        }
     }
 
     private void loadData() {

@@ -10,7 +10,6 @@ public class PortInfoTO implements Serializable {
     @SerializedName("id")
     @Expose
     private Long id;
-
     @SerializedName("name")
     @Expose
     private String name;
@@ -18,27 +17,21 @@ public class PortInfoTO implements Serializable {
     @SerializedName("entranceWidth")
     @Expose
     private Double entranceWidth;
-
     @SerializedName("entranceDepth")
     @Expose
     private Double entranceDepth;
-
     @SerializedName("maxVesselSubmersion")
     @Expose
     private Double maxVesselSubmersion;
-
     @SerializedName("maxVesselLength")
     @Expose
     private Double maxVesselLength;
-
     @SerializedName("maxVesselWidth")
     @Expose
     private Double maxVesselWidth;
-
     @SerializedName("dailyWaterLevelUp")
     @Expose
     private Double dailyWaterLevelUp;
-
     @SerializedName("dailyWaterLevelDown")
     @Expose
     private Double dailyWaterLevelDown;
@@ -46,19 +39,15 @@ public class PortInfoTO implements Serializable {
     @SerializedName("showerPrice")
     @Expose
     private Double showerPrice;
-
     @SerializedName("bathroomPrice")
     @Expose
     private Double bathroomPrice;
-
     @SerializedName("electricityPrice")
     @Expose
     private Double electricityPrice;
-
     @SerializedName("currentWaterPrice")
     @Expose
     private Double currentWaterPrice;
-
     @SerializedName("toiletEmptyingPrice")
     @Expose
     private Double toiletEmptyingPrice;
