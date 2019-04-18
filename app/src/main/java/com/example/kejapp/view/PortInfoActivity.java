@@ -1,10 +1,5 @@
 package com.example.kejapp.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -15,19 +10,24 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.kejapp.R;
-import com.example.kejapp.model.PortMapTO;
 import com.example.kejapp.model.PortInfoTO;
+import com.example.kejapp.model.PortMapTO;
 import com.example.kejapp.utils.GetDataService;
 import com.example.kejapp.utils.RetrofitClientInstance;
 import com.google.android.gms.common.util.Strings;
 
-import java.io.IOException;
-import java.util.List;
+import androidx.appcompat.app.AppCompatActivity;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PortInfoActivity extends AppCompatActivity {
 
 
+    private static final String PREFERENCES_NAME = "myPreferences";
+    private static final String PREFERENCES_TEXT_FIELD = "userEmail";
     private TextView portNameLabel;
     private TextView entranceWidthLabel;
     private TextView entranceDepthLabel;
@@ -41,19 +41,13 @@ public class PortInfoActivity extends AppCompatActivity {
     private TextView electricityPriceLabel;
     private TextView currentWaterPriceLabel;
     private TextView toiletEmptyingPriceLabel;
-
     private Button portInfoButton;
-
     private PortMapTO portMapTO;
     private PortInfoTO portInfoTO;
     private Intent intent;
-
-    private static final String PREFERENCES_NAME = "myPreferences";
-    private static final String PREFERENCES_TEXT_FIELD = "userEmail";
     private SharedPreferences preferences;
 
     private GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-
 
     @Override
     protected synchronized void onCreate(Bundle savedInstanceState) {
@@ -61,14 +55,10 @@ public class PortInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_port_info);
         preferences = getSharedPreferences(PREFERENCES_NAME, Activity.MODE_PRIVATE);
 
+        bindTextViews();
         initializeGlobalData();
 
-        bindTextViews();
-
-        if (portInfoTO!=null){
-            fillTextViews(portInfoTO);
-        }
-        else {
+        if (portInfoTO == null) {
             portInfoTO = new PortInfoTO();
             portInfoTO.setId(1L);
         }
@@ -78,7 +68,7 @@ public class PortInfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String tokenFromSharedPreferences = preferences.getString(PREFERENCES_TEXT_FIELD, "");
-                if(Strings.isEmptyOrWhitespace(tokenFromSharedPreferences)){
+                if (Strings.isEmptyOrWhitespace(tokenFromSharedPreferences)) {
                     showWarning();
                 } else {
                     Intent intent = new Intent(PortInfoActivity.this, ChooseDeckActivity.class);
@@ -89,7 +79,7 @@ public class PortInfoActivity extends AppCompatActivity {
         });
     }
 
-    public void showWarning(){
+    public void showWarning() {
 
         AlertDialog.Builder builder1 = new AlertDialog.Builder(PortInfoActivity.this);
         builder1.setMessage("Opcja dostępna tylko dla zalogowanych użytkowników.");
@@ -117,7 +107,7 @@ public class PortInfoActivity extends AppCompatActivity {
 
     private void initializeGlobalData() {
         intent = getIntent();
-        portMapTO = (PortMapTO)intent.getSerializableExtra("portMapTO");
+        portMapTO = (PortMapTO) intent.getSerializableExtra("portMapTO");
         loadPortInfoTO(portMapTO.getId());
     }
 
@@ -163,6 +153,7 @@ public class PortInfoActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<PortInfoTO> call, Response<PortInfoTO> response) {
                 portInfoTO = response.body();
+                fillTextViews(portInfoTO);
             }
 
             @Override
@@ -172,17 +163,17 @@ public class PortInfoActivity extends AppCompatActivity {
         });
     }
 
-    private String printMetersFromDouble(Double d){
-        if (d==null) return "N/A";
+    private String printMetersFromDouble(Double d) {
+        if (d == null) return "N/A";
         else return Double.toString(d) + "m";
     }
 
-    private String printPriceFromDouble(Double d){
-        if (d==null) return "N/A";
+    private String printPriceFromDouble(Double d) {
+        if (d == null) return "N/A";
         else return Double.toString(d) + "PLN";
     }
 
-    private String printNamesFromString(String s){
+    private String printNamesFromString(String s) {
         if (s == null) return "N/A";
         else return s;
     }
