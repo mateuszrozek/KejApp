@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.kejapp.R;
@@ -36,6 +38,7 @@ public class QuayInfoActivity extends AppCompatActivity {
     TextView currentWaterAvailableTextView;
     TextView calculatedPriceTextView;
     TextView notesTextView;
+    Button quayOrderButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,14 @@ public class QuayInfoActivity extends AppCompatActivity {
 
         initializeGlobalData();
         bindTextViews();
+        quayOrderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("dupa", "dupa");
+                startActivity(intent);
+            }
+        });
     }
 
     private void initializeGlobalData() {
@@ -78,5 +89,6 @@ public class QuayInfoActivity extends AppCompatActivity {
         currentWaterAvailableTextView = findViewById(R.id.currentWaterAvailableTextView);
         calculatedPriceTextView = findViewById(R.id.calculatedPriceTextView);
         notesTextView = findViewById(R.id.notesTextView);
+        quayOrderButton = findViewById(R.id.quayOrderButton);
     }
 }
