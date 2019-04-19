@@ -1,15 +1,10 @@
 package com.example.kejapp.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 import com.example.kejapp.R;
 import com.example.kejapp.model.PierTO;
 import com.example.kejapp.model.PortInfoTO;
@@ -20,25 +15,32 @@ import com.example.kejapp.utils.RetrofitClientInstance;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class ChooseDeckActivity extends AppCompatActivity {
 
-    Intent intent;
-    PortInfoTO portInfoTO;
-    List<PierTO> pierTOS;
+    private Intent intent;
+    private PortInfoTO portInfoTO;
+    private List<PierTO> pierTOList;
     private GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-    ImageView imageView;
+    private ImageView imageView;
+    private RecyclerView recyclerView;
+    private DeckListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_deck);
 
-
         initializeGlobalData();
         loadData(); //loadFromDB or mockDecks
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        DeckListAdapter adapter = new DeckListAdapter(pierTOS);
+        recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
@@ -50,16 +52,21 @@ public class ChooseDeckActivity extends AppCompatActivity {
         portInfoTO = (PortInfoTO) intent.getSerializableExtra("portInfoTO");
         imageView = findViewById(R.id.imageView);
         int id = portInfoTO.getId().intValue();
-        switch (id){
-            case 1: imageView.setImageResource(R.drawable.wilkasy_piers);
+        switch (id) {
+            case 1:
+                imageView.setImageResource(R.drawable.wilkasy_piers);
                 break;
-            case 2: imageView.setImageResource(R.drawable.mikolajki_piers);
+            case 2:
+                imageView.setImageResource(R.drawable.mikolajki_piers);
                 break;
-            case 3: imageView.setImageResource(R.drawable.wegorzewo_piers);
+            case 3:
+                imageView.setImageResource(R.drawable.wegorzewo_piers);
                 break;
-            case 4: imageView.setImageResource(R.drawable.gizycko_piers);
+            case 4:
+                imageView.setImageResource(R.drawable.gizycko_piers);
                 break;
-            case 5: imageView.setImageResource(R.drawable.ruciane_piers);
+            case 5:
+                imageView.setImageResource(R.drawable.ruciane_piers);
                 break;
         }
     }
@@ -67,7 +74,7 @@ public class ChooseDeckActivity extends AppCompatActivity {
     private void loadData() {
 
         loadDecksFromDB();
-        if (pierTOS ==null){
+        if (pierTOList == null) {
             mockDecks();
         }
     }
@@ -79,7 +86,8 @@ public class ChooseDeckActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call<List<PierTO>> call, Response<List<PierTO>> response) {
-                pierTOS = response.body();
+                pierTOList = response.body();
+                adapter = new DeckListAdapter(pierTOList);
             }
 
             @Override
@@ -91,13 +99,21 @@ public class ChooseDeckActivity extends AppCompatActivity {
 
 
     private void mockDecks() {
-        pierTOS = new ArrayList<>();
-
+        pierTOList = new ArrayList<>();
         for (int i = 1; i < 15; i++) {
             PierTO pierTO = new PierTO();
             pierTO.setPierId("A");
             pierTO.setPortId(Long.valueOf(i));
-            pierTOS.add(pierTO);
+            pierTO.setAllQuaysQuantity(7);
+            ArrayList<Long> longs = new ArrayList<>();
+            longs.add(1L);
+            longs.add(2L);
+            longs.add(3L);
+            longs.add(4L);
+            longs.add(5L);
+            pierTO.setFreeQuaysNumbers(longs);
+            pierTOList.add(pierTO);
         }
+        adapter = new DeckListAdapter(pierTOList);
     }
 }

@@ -1,10 +1,5 @@
 package com.example.kejapp.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.GridView;
@@ -12,7 +7,6 @@ import android.widget.Toast;
 
 import com.example.kejapp.R;
 import com.example.kejapp.model.PierTO;
-import com.example.kejapp.model.PortInfoTO;
 import com.example.kejapp.model.QuayTO;
 import com.example.kejapp.utils.GetDataService;
 import com.example.kejapp.utils.QuayAdapter;
@@ -21,12 +15,18 @@ import com.example.kejapp.utils.RetrofitClientInstance;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.app.AppCompatActivity;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class ChooseQuayActivity extends AppCompatActivity {
 
-    List<QuayTO> quayTOs;
-    Intent intent;
-    PierTO pierTO;
+    private List<QuayTO> quayTOs;
+    private Intent intent;
+    private PierTO pierTO;
     private GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+    private QuayAdapter quayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +36,9 @@ public class ChooseQuayActivity extends AppCompatActivity {
         initializeGlobalData();
         loadData(); //loadFromDB or mockDecks
 
-        mockQuays();
+//        mockQuays();
 
         GridView gridView = findViewById(R.id.gridViewChooseQuay);
-        QuayAdapter quayAdapter = new QuayAdapter(this, quayTOs);
         gridView.setAdapter(quayAdapter);
     }
 
@@ -52,7 +51,7 @@ public class ChooseQuayActivity extends AppCompatActivity {
     private void loadData() {
 
         loadQuaysFromDB();
-        if (quayTOs ==null){
+        if (quayTOs == null) {
             mockQuays();
         }
     }
@@ -66,6 +65,8 @@ public class ChooseQuayActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<QuayTO>> call, Response<List<QuayTO>> response) {
                 quayTOs = response.body();
+                quayAdapter = new QuayAdapter(getApplicationContext(), quayTOs);
+
             }
 
             @Override
@@ -86,7 +87,7 @@ public class ChooseQuayActivity extends AppCompatActivity {
             quay.setId(id);
             quayTOs.add(quay);
         }
-
+        quayAdapter = new QuayAdapter(getApplicationContext(), quayTOs);
     }
 
 

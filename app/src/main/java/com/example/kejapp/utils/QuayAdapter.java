@@ -7,9 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
 import com.example.kejapp.R;
 import com.example.kejapp.model.QuayTO;
 import com.example.kejapp.view.QuayInfoActivity;
+
 import java.util.List;
 
 public class QuayAdapter extends BaseAdapter {
@@ -40,8 +42,7 @@ public class QuayAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
 
-        LayoutInflater inflater = (LayoutInflater) context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View gridView;
 
@@ -55,11 +56,23 @@ public class QuayAdapter extends BaseAdapter {
                 @Override
                 public void onClick(View view) {
 
-                    Intent intent = new Intent(view.getContext(), QuayInfoActivity.class);
+//                    Intent intent = new Intent(view.getContext(), QuayInfoActivity.class);
+//                    Intent intent = new Intent(ChooseQuayActivity.this, QuayInfoActivity.class);
+//                    intent.putExtra("quay", textViewQuay.getText());
+//                    view.getContext().startActivity(intent);
+
+                    Intent intent = new Intent(context, QuayInfoActivity.class);
                     intent.putExtra("quay", textViewQuay.getText());
-                    view.getContext().startActivity(intent);
+                    context.startActivity(intent);
                 }
             });
+//            textViewQuay.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    context.startActivity();
+//                }
+//            });
+
 
         } else {
             gridView = view;
