@@ -52,6 +52,32 @@ public class PortInfoTO implements Serializable {
     @Expose
     private Double toiletEmptyingPrice;
 
+    @SerializedName("engineForbidden")
+    @Expose
+    Boolean engineForbidden;
+    @SerializedName("gasStation")
+    @Expose
+    Boolean gasStation;
+    @SerializedName("medicalCare")
+    @Expose
+    Boolean medicalCare;
+    @SerializedName("sailingStore")
+    @Expose
+    Boolean sailingStore;
+    @SerializedName("nightLights")
+    @Expose
+    Boolean nightLights;
+
+    @SerializedName("entryDescription")
+    @Expose
+    String entryDescription;
+    @SerializedName("phoneNumber")
+    @Expose
+    String phoneNumber;
+    @SerializedName("website")
+    @Expose
+    String website;
+
     public Long getId() {
         return id;
     }
@@ -162,5 +188,69 @@ public class PortInfoTO implements Serializable {
 
     public void setToiletEmptyingPrice(Double toiletEmptyingPrice) {
         this.toiletEmptyingPrice = toiletEmptyingPrice;
+    }
+
+    public Boolean getEngineForbidden() {
+        return engineForbidden;
+    }
+
+    public void setEngineForbidden(Boolean engineForbidden) {
+        this.engineForbidden = engineForbidden;
+    }
+
+    public Boolean getGasStation() {
+        return gasStation;
+    }
+
+    public void setGasStation(Boolean gasStation) {
+        this.gasStation = gasStation;
+    }
+
+    public Boolean getMedicalCare() {
+        return medicalCare;
+    }
+
+    public void setMedicalCare(Boolean medicalCare) {
+        this.medicalCare = medicalCare;
+    }
+
+    public Boolean getSailingStore() {
+        return sailingStore;
+    }
+
+    public void setSailingStore(Boolean sailingStore) {
+        this.sailingStore = sailingStore;
+    }
+
+    public Boolean getNightLights() {
+        return nightLights;
+    }
+
+    public void setNightLights(Boolean nightLights) {
+        this.nightLights = nightLights;
+    }
+
+    public String getEntryDescription() {
+        return entryDescription;
+    }
+
+    public void setEntryDescription(String entryDescription) {
+        this.entryDescription = entryDescription;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
     }
 }
