@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.kejapp.R;
 import com.example.kejapp.model.PortInfoTO;
@@ -39,6 +40,7 @@ public class QuayInfoActivity extends AppCompatActivity {
     TextView calculatedPriceTextView;
     TextView notesTextView;
     Button quayOrderButton;
+    Button quayBackButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +54,14 @@ public class QuayInfoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.putExtra("dupa", "dupa");
+                Toast.makeText(getApplicationContext(), "Keja została zarezerwowana", Toast.LENGTH_LONG).show();
                 startActivity(intent);
+            }
+        });
+        quayBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
             }
         });
     }
@@ -90,5 +99,6 @@ public class QuayInfoActivity extends AppCompatActivity {
         calculatedPriceTextView = findViewById(R.id.calculatedPriceTextView);
         notesTextView = findViewById(R.id.notesTextView);
         quayOrderButton = findViewById(R.id.quayOrderButton);
+        quayBackButton = findViewById(R.id.quayBackButton);
     }
 }
