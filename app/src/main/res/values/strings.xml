@@ -40,13 +40,7 @@
     <string name="notesTextView">Komentarz</string>
 
     <string name="quayOrderButton">Rezerwuj keję!</string>
-
-
-
-
-
-
-
+    <string name="quayBackButton">Powrót</string>
 
 
 </resources>

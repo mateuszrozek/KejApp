@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import com.example.kejapp.R;
@@ -30,12 +28,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main_activity);
 
         preferences = getSharedPreferences(PREFERENCES_NAME, Activity.MODE_PRIVATE);
-        final FloatingActionButton generalButton = (FloatingActionButton) findViewById(R.id.mainFloatingButton);
-        final FloatingActionButton settingsButton = (FloatingActionButton) findViewById(R.id.settingsButton);
-        final FloatingActionButton loginButton = (FloatingActionButton) findViewById(R.id.loginButton);
+        final FloatingActionButton generalButton = findViewById(R.id.mainFloatingButton);
+        final FloatingActionButton settingsButton = findViewById(R.id.settingsButton);
+        final FloatingActionButton loginButton = findViewById(R.id.loginButton);
+        final FloatingActionButton reservationsButton = findViewById(R.id.reservationsButton);
 
         settingsButton.hide();
         loginButton.hide();
+        reservationsButton.hide();
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +57,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        reservationsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String tokenFromSharedPreferences = preferences.getString(PREFERENCES_TEXT_FIELD, "");
+                if(Strings.isEmptyOrWhitespace(tokenFromSharedPreferences)){
+                    Toast.makeText(getApplicationContext(), "To see reservations login first", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(getApplicationContext(), ReservationsActivity.class);
+                    /*TODO
+                    * what to pass here?*/
+                    startActivity(intent);
+                }
+            }
+        });
+
 
         generalButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,9 +79,11 @@ public class MainActivity extends AppCompatActivity {
                 if(settingsButton.getVisibility() == View.VISIBLE) {
                     settingsButton.hide();
                     loginButton.hide();
+                    reservationsButton.hide();
                 } else {
                     settingsButton.show();
                     loginButton.show();
+                    reservationsButton.show();
                 }
             }
         });
