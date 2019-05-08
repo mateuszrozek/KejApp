@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.kejapp.R;
-import com.example.kejapp.model.CreateUserTO;
+import com.example.kejapp.model.KejappUserTO;
 import com.google.android.gms.common.util.Strings;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -56,10 +56,10 @@ public class RegisterActivity extends AppCompatActivity {
 
                } else {
 
-                        CreateUserTO newUser = new CreateUserTO();
-                        newUser.setUserName(inputName);
-                        newUser.setUserSurname(inputSurname);
-                        newUser.setEmail(inputEmail);
+                        KejappUserTO newUser = new KejappUserTO();
+                        newUser.setFirstName(inputName);
+                        newUser.setLastName(inputSurname);
+                        newUser.setUsername(inputEmail);
                         newUser.setPassword(inputPassword);
 
                         newUser.setVesselName(inputBoatName);

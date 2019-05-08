@@ -1,13 +1,13 @@
 package com.example.kejapp.utils;
 
-import com.example.kejapp.model.CreateUserTO;
+import com.example.kejapp.model.KejappUserTO;
 
 public class UserHandler {
 
-    private CreateUserTO createUserTO;
+    private KejappUserTO kejappUserTO;
 
     public UserHandler(){
-        createUserTO = new CreateUserTO();
+        kejappUserTO = new KejappUserTO();
     }
 
 

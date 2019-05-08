@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.kejapp.R;
-import com.example.kejapp.model.CreateUserTO;
 
 public class LogoutActivity extends AppCompatActivity {
 

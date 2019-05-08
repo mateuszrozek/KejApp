@@ -3,11 +3,11 @@ package com.example.kejapp.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class CreateUserTO {
+public class KejappUserTO {
 
-    @SerializedName("email")
+    @SerializedName("username")
     @Expose
-    String email;
+    String username;
 
     @SerializedName("password")
     @Expose
@@ -17,13 +17,13 @@ public class CreateUserTO {
     @Expose
     String phoneNumber;
 
-    @SerializedName("userName")
+    @SerializedName("firstName")
     @Expose
-    String userName;
+    String firstName;
 
-    @SerializedName("userSurname")
+    @SerializedName("lastName")
     @Expose
-    String userSurname;
+    String lastName;
 
     @SerializedName("vesselName")
     @Expose
@@ -45,12 +45,16 @@ public class CreateUserTO {
     @Expose
     Integer crewmenQuantity;
 
-    public String getEmail() {
-        return email;
+    @SerializedName("role")
+    @Expose
+    String role;
+
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -69,20 +73,20 @@ public class CreateUserTO {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getUserSurname() {
-        return userSurname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setUserSurname(String userSurname) {
-        this.userSurname = userSurname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getVesselName() {
@@ -125,9 +129,11 @@ public class CreateUserTO {
         this.crewmenQuantity = crewmenQuantity;
     }
 
+    public String getRole() {
+        return role;
+    }
 
-
-
-
-
+    public void setRole(String role) {
+        this.role = role;
+    }
 }
