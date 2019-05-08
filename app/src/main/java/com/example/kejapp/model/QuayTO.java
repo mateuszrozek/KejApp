@@ -7,24 +7,32 @@ import java.io.Serializable;
 
 public class QuayTO implements Serializable {
 
-    @SerializedName("id")
+    @SerializedName("portId")
     @Expose
-    private Long id;
+    private Long portId;
+
+    @SerializedName("pier")
+    @Expose
+    private String pier;
 
     @SerializedName("quayNumber")
     @Expose
     private Long quayNumber;
 
-    @SerializedName("portId")
-    @Expose
-    private Long portId;
-
-    public Long getId() {
-        return id;
+    public Long getPortId() {
+        return portId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPortId(Long portId) {
+        this.portId = portId;
+    }
+
+    public String getPier() {
+        return pier;
+    }
+
+    public void setPier(String pier) {
+        this.pier = pier;
     }
 
     public Long getQuayNumber() {
@@ -33,13 +41,5 @@ public class QuayTO implements Serializable {
 
     public void setQuayNumber(Long quayNumber) {
         this.quayNumber = quayNumber;
-    }
-
-    public Long getPortId() {
-        return portId;
-    }
-
-    public void setPortId(Long portId) {
-        this.portId = portId;
     }
 }
