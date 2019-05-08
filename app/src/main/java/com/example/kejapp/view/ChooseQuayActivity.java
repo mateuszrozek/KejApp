@@ -11,6 +11,8 @@ import com.example.kejapp.model.QuayTO;
 import com.example.kejapp.utils.GetDataService;
 import com.example.kejapp.utils.QuayAdapter;
 import com.example.kejapp.utils.RetrofitClientInstance;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,11 +86,9 @@ public class ChooseQuayActivity extends AppCompatActivity {
             Long id = new Long(i);
             quay.setQuayNumber(id);
             quay.setPortId(id);
-            quay.setId(id);
+            quay.setPier("A");
             quayTOs.add(quay);
         }
         quayAdapter = new QuayAdapter(getApplicationContext(), quayTOs);
     }
-
-
 }
