@@ -1,8 +1,10 @@
-package com.example.kejapp;
+package com.example.kejapp.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.kejapp.R;
 
 public class ReservationsActivity extends AppCompatActivity {
 
