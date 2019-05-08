@@ -1,5 +1,6 @@
 package com.example.kejapp.utils;
 
+import com.example.kejapp.model.KejappUserTO;
 import com.example.kejapp.model.PierTO;
 import com.example.kejapp.model.PortInfoTO;
 import com.example.kejapp.model.PortMapTO;
@@ -9,7 +10,9 @@ import com.example.kejapp.model.ReservationTO;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface GetDataService {
@@ -28,4 +31,7 @@ public interface GetDataService {
 
     @GET("reservations")
     Call<List<ReservationTO>> findReservations();
+
+    @POST("register")
+    Call<Void> registerUser(@Body KejappUserTO kejappUserTO);
 }

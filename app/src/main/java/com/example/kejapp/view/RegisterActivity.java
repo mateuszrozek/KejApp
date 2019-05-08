@@ -1,6 +1,9 @@
 package com.example.kejapp.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -11,10 +14,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.kejapp.R;
 import com.example.kejapp.model.KejappUserTO;
+import com.example.kejapp.model.PierTO;
+import com.example.kejapp.utils.DeckListAdapter;
+import com.example.kejapp.utils.GetDataService;
+import com.example.kejapp.utils.RetrofitClientInstance;
 import com.google.android.gms.common.util.Strings;
+
+import java.util.List;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -22,6 +32,20 @@ public class RegisterActivity extends AppCompatActivity {
     private static final String PREFERENCES_TEXT_FIELD = "userEmail";
     private SharedPreferences preferences;
     private boolean confirmed;
+    String inputName ;
+    String inputSurname ;
+    String inputEmail;
+    String inputPassword;
+    String inputPasswordRepeat;
+
+    String inputBoatName;
+    String inputMemQuantity;
+    String inputBoatWidth;
+    String inputBoatLength;
+    String inputBoatSubmersion;
+
+    private GetDataService serviceAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,22 +57,13 @@ public class RegisterActivity extends AppCompatActivity {
 
         Button createNewUserButtton = findViewById(R.id.registerButton);
 
-        final String inputName = ((EditText)findViewById(R.id.inputSurname)).getText().toString();
-        final String inputSurname = ((EditText)findViewById(R.id.inputEmail)).getText().toString();
-        final String inputEmail = ((EditText)findViewById(R.id.inputName)).getText().toString();
-        final String inputPassword = ((EditText)findViewById(R.id.inputPassword)).getText().toString();
-        final String inputPasswordRepeat = ((EditText)findViewById(R.id.inputRepeatPassword)).getText().toString();
-
-        final String inputBoatName = ((EditText)findViewById(R.id.inputBoatName)).getText().toString();
-        final String inputMemQuantity = ((EditText)findViewById(R.id.inputPeopleQuantity)).getText().toString();
-        final String inputBoatWidth = ((EditText)findViewById(R.id.inputBoatWidth)).getText().toString();
-        final String inputBoatLength = ((EditText)findViewById(R.id.inputBoatLength)).getText().toString();
-        final String inputBoatSubmersion = ((EditText)findViewById(R.id.inputBoatDepth)).getText().toString();
+        serviceAuth = RetrofitClientInstance.getRetrofitInstanceForUserAuthorization().create(GetDataService.class);
 
 
         createNewUserButtton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                fetchDataFromFormular();
                 if(!confirmed && (Strings.isEmptyOrWhitespace(inputBoatName) || Strings.isEmptyOrWhitespace(inputMemQuantity) ||
                        Strings.isEmptyOrWhitespace(inputBoatWidth) || Strings.isEmptyOrWhitespace(inputBoatLength) ||
                         Strings.isEmptyOrWhitespace(inputBoatSubmersion))){
@@ -72,9 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                         }
 
-
-                        saveToSharedPreferences();
-                        returnToMainMap();
+                        registerUser(newUser);
                 }
             }
 
@@ -84,6 +97,42 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    private void registerUser(KejappUserTO newUser) {
+
+        Call<Void> call = serviceAuth.registerUser(newUser);
+        call.enqueue(new Callback<Void>() {
+
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+               int reponseCode = response.code();
+               if (reponseCode == 201){
+                    returnToMainMap();
+                    Toast.makeText(getApplication(), "Zarejestrowano! Zaloguj się!", Toast.LENGTH_SHORT).show();
+                } else if (reponseCode == 409){
+                   Toast.makeText(getApplication(), "Taki użytkownik już istnieje!", Toast.LENGTH_SHORT).show();
+               }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(getApplication(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void fetchDataFromFormular(){
+        inputName = ((EditText)findViewById(R.id.inputSurname)).getText().toString();
+        inputSurname = ((EditText)findViewById(R.id.inputEmail)).getText().toString();
+        inputEmail = ((EditText)findViewById(R.id.inputName)).getText().toString();
+        inputPassword = ((EditText)findViewById(R.id.inputPassword)).getText().toString();
+        inputPasswordRepeat = ((EditText)findViewById(R.id.inputRepeatPassword)).getText().toString();
+
+        inputBoatName = ((EditText)findViewById(R.id.inputBoatName)).getText().toString();
+        inputMemQuantity = ((EditText)findViewById(R.id.inputPeopleQuantity)).getText().toString();
+        inputBoatWidth = ((EditText)findViewById(R.id.inputBoatWidth)).getText().toString();
+        inputBoatLength = ((EditText)findViewById(R.id.inputBoatLength)).getText().toString();
+        inputBoatSubmersion = ((EditText)findViewById(R.id.inputBoatDepth)).getText().toString();
+    }
 
     public void returnToMainMap() {
 
