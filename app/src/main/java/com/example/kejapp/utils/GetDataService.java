@@ -4,6 +4,7 @@ import com.example.kejapp.model.PierTO;
 import com.example.kejapp.model.PortInfoTO;
 import com.example.kejapp.model.PortMapTO;
 import com.example.kejapp.model.QuayTO;
+import com.example.kejapp.model.ReservationTO;
 
 import java.util.List;
 
@@ -24,4 +25,7 @@ public interface GetDataService {
 
     @GET("ports/{portId}")
     Call<PortInfoTO> findPortById(@Path("portId") Long portId);
+
+    @GET("reservations")
+    Call<List<ReservationTO>> findReservations();
 }

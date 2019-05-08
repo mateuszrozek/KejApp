@@ -20,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.ReservationsActivity"></activity>
+        <activity android:name=".view.ReservationInfoActivity"></activity>
+        <activity android:name=".view.ReservationsActivity" />
         <activity android:name=".view.LogoutActivity" />
         <activity android:name=".view.RegisterActivity" />
         <activity android:name=".view.QuayInfoActivity" />
