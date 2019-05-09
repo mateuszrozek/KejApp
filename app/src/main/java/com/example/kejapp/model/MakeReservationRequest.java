@@ -21,7 +21,7 @@ public class MakeReservationRequest {
         return portId;
     }
 
-    public void setPortName(Long portId) {
+    public void setPortId(Long portId) {
         this.portId = portId;
     }
 
