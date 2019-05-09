@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         preferences = getSharedPreferences(PREFERENCES_NAME, Activity.MODE_PRIVATE);
         setContentView(R.layout.activity_login);
 
-        service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+        service = RetrofitClientInstance.getRetrofitInstance(getApplicationContext()).create(GetDataService.class);
 
         final TextView registerText = findViewById(R.id.registerText);
         final Button login = findViewById(R.id.loginButton);

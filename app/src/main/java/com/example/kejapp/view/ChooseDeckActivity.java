@@ -27,7 +27,7 @@ public class ChooseDeckActivity extends AppCompatActivity {
     private Intent intent;
     private PortInfoTO portInfoTO;
     private List<PierTO> pierTOList;
-    private GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+    private GetDataService service;
     private ImageView imageView;
     private RecyclerView recyclerView;
     private DeckListAdapter adapter;
@@ -35,6 +35,7 @@ public class ChooseDeckActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        service = RetrofitClientInstance.getRetrofitInstance(getApplicationContext()).create(GetDataService.class);
         setContentView(R.layout.activity_choose_deck);
 
         initializeGlobalData();

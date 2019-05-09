@@ -47,11 +47,12 @@ public class PortInfoActivity extends AppCompatActivity {
     private Intent intent;
     private SharedPreferences preferences;
 
-    private GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+    private GetDataService service;
 
     @Override
     protected synchronized void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        service = RetrofitClientInstance.getRetrofitInstance(getApplicationContext()).create(GetDataService.class);
         setContentView(R.layout.activity_port_info);
         preferences = getSharedPreferences(PREFERENCES_NAME, Activity.MODE_PRIVATE);
 

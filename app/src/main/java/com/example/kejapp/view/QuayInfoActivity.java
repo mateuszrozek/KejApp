@@ -32,7 +32,7 @@ public class QuayInfoActivity extends AppCompatActivity {
     QuayInfoTO quayInfoTO;
     private Intent intent;
 
-    private GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+    private GetDataService service;
 
     TextView textViewQuayInfo;
 
@@ -58,6 +58,7 @@ public class QuayInfoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        service = RetrofitClientInstance.getRetrofitInstance(getApplicationContext()).create(GetDataService.class);
         setContentView(R.layout.activity_quay_info);
 
         initializeGlobalData();

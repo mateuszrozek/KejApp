@@ -27,13 +27,14 @@ public class ReservationsActivity extends AppCompatActivity {
 
     private Intent intent;
     private List<ReservationTO> reservationTOList;
-    private GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+    private GetDataService service;
     private RecyclerView recyclerView;
     private ReservationListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        service = RetrofitClientInstance.getRetrofitInstance(getApplicationContext()).create(GetDataService.class);
         setContentView(R.layout.activity_reservations);
 
         initializeGlobalData();

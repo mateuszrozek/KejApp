@@ -45,17 +45,6 @@ public class RetrofitClientInstance {
         return tokenFromSharedPreferences;
     }
 
-
-
-    public static Retrofit getRetrofitInstance() {
-        retrofit = new retrofit2.Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit;
-    }
-
     public static Retrofit getRetrofitInstanceForUserAuthorization() {
         Retrofit retrofitAuth = new retrofit2.Retrofit.Builder()
                     .baseUrl(SECURITY_URL)

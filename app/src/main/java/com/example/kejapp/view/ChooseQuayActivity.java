@@ -25,12 +25,13 @@ public class ChooseQuayActivity extends AppCompatActivity {
     private List<QuayTO> quayTOs;
     private Intent intent;
     private PierTO pierTO;
-    private GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+    private GetDataService service;
     private QuayAdapter quayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        service = RetrofitClientInstance.getRetrofitInstance(getApplicationContext()).create(GetDataService.class);
         setContentView(R.layout.activity_choose_quay);
 
         initializeGlobalData();
