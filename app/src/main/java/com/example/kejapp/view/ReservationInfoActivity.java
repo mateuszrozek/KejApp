@@ -1,6 +1,7 @@
 package com.example.kejapp.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,11 +11,15 @@ import android.widget.Toast;
 
 import com.example.kejapp.R;
 import com.example.kejapp.model.ReservationTO;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import com.example.kejapp.utils.Formatter;
+import com.example.kejapp.utils.GetDataService;
+import com.example.kejapp.utils.RetrofitClientInstance;
 
 public class ReservationInfoActivity extends AppCompatActivity {
+
+    private GetDataService service;
+
+    private Formatter formatter;
 
     private ReservationTO reservationTO;
     private Intent intent;
@@ -47,6 +52,8 @@ public class ReservationInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservation_info);
 
+
+
         bindTextViews();
         initializeGlobalData();
         fillTextViews(reservationTO);
@@ -54,8 +61,9 @@ public class ReservationInfoActivity extends AppCompatActivity {
         reservationRevokeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                revokeReservation(reservationTO);
                 Intent intent = new Intent(getApplicationContext(), ReservationsActivity.class);
-                intent.putExtra("dupa", "dupa");
                 /*TODO
                 tu coś dodawać czy puścić requesta tylko?*/
                 Toast.makeText(getApplicationContext(), "Rezerwacja została anulowana", Toast.LENGTH_LONG).show();
@@ -70,30 +78,53 @@ public class ReservationInfoActivity extends AppCompatActivity {
         });
     }
 
+    private void revokeReservation(ReservationTO reservationTO) {
+//        Call<List<ReservationTO>> call = service.findReservations();
+//        call.enqueue(new Callback<List<ReservationTO>>() {
+//
+//            @Override
+//            public void onResponse(Call<List<ReservationTO>> call, Response<List<ReservationTO>> response) {
+//                reservationTOList = response.body();
+//                adapter = new ReservationListAdapter(reservationTOList);
+//                recyclerView = findViewById(R.id.recyclerViewReservations);
+//                recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+//                recyclerView.setAdapter(adapter);
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<ReservationTO>> call, Throwable t) {
+//                Toast.makeText(getApplication(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+//                mockReservations();
+//            }
+//        });
+
+
+    }
+
     private void fillTextViews(ReservationTO reservationTO) {
 
-        reservationStartDate.setText(printStringFromLocalDateTime(reservationTO.getStartDate()));
-        reservationEndDate.setText(printStringFromLocalDateTime(reservationTO.getStartDate()));
+        reservationStartDate.setText(formatter.printStringFromLocalDateTime(reservationTO.getStartDate()));
+        reservationEndDate.setText(formatter.printStringFromLocalDateTime(reservationTO.getStartDate()));
 
-        reservationPortNameTextView.setText(printNamesFromString(reservationTO.getQuayInfoTO().getPortName()));
-        reservationLatitudeTextView.setText(printMetersFromDouble(reservationTO.getQuayInfoTO().getLatitude()));
-        reservationLongitudeTextView.setText(printMetersFromDouble(reservationTO.getQuayInfoTO().getLongitude()));
+        reservationPortNameTextView.setText(formatter.printNamesFromString(reservationTO.getQuayInfoTO().getPortName()));
+        reservationLatitudeTextView.setText(formatter.printLatLngFromDouble(reservationTO.getQuayInfoTO().getLatitude()));
+        reservationLongitudeTextView.setText(formatter.printLatLngFromDouble(reservationTO.getQuayInfoTO().getLongitude()));
 
-        reservationPierTextView.setText(printNamesFromString(reservationTO.getQuayInfoTO().getPier()));
-        reservationQuayNumberTextView.setText(printStringFromNumber(reservationTO.getQuayInfoTO().getQuayNumber()));
+        reservationPierTextView.setText(formatter.printNamesFromString(reservationTO.getQuayInfoTO().getPier()));
+        reservationQuayNumberTextView.setText(formatter.printStringFromNumber(reservationTO.getQuayInfoTO().getQuayNumber()));
 
-        reservationMaxVesselLengthTextView.setText(printMetersFromDouble(reservationTO.getQuayInfoTO().getMaxVesselLength()));
-        reservationMaxVesselWidthTextView.setText(printMetersFromDouble(reservationTO.getQuayInfoTO().getMaxVesselWidth()));
-        reservationMaxVesselSubmersionTextView.setText(printMetersFromDouble(reservationTO.getQuayInfoTO().getMaxVesselSubmersion()));;
+        reservationMaxVesselLengthTextView.setText(formatter.printMetersFromDouble(reservationTO.getQuayInfoTO().getMaxVesselLength()));
+        reservationMaxVesselWidthTextView.setText(formatter.printMetersFromDouble(reservationTO.getQuayInfoTO().getMaxVesselWidth()));
+        reservationMaxVesselSubmersionTextView.setText(formatter.printMetersFromDouble(reservationTO.getQuayInfoTO().getMaxVesselSubmersion()));;
 
-        reservationMooringAvailableTextView.setText(printStringFromBoolean(reservationTO.getQuayInfoTO().getMooringAvailable()));
-        reservationMooringTypeTextView.setText(printNamesFromString(reservationTO.getQuayInfoTO().getMooringType()));
-        reservationBuoyAvailableTextView.setText(printStringFromBoolean(reservationTO.getQuayInfoTO().getBuoyAvailable()));
-        reservationAnchorRequiredTextView.setText(printStringFromBoolean(reservationTO.getQuayInfoTO().getAnchorRequired()));
-        reservationElectricityAvailableTextView.setText(printStringFromBoolean(reservationTO.getQuayInfoTO().getElectricityAvailable()));
-        reservationCurrentWaterAvailableTextView.setText(printStringFromBoolean(reservationTO.getQuayInfoTO().getCurrentWaterAvailable()));
-        reservationCalculatedPriceTextView.setText(printPriceFromDouble(reservationTO.getQuayInfoTO().getCalculatedPrice()));
-        reservationNotesTextView.setText(printNamesFromString(reservationTO.getQuayInfoTO().getNotes()));
+        reservationMooringAvailableTextView.setText(formatter.printStringFromBoolean(reservationTO.getQuayInfoTO().getMooringAvailable()));
+        reservationMooringTypeTextView.setText(formatter.printNamesFromString(reservationTO.getQuayInfoTO().getMooringType()));
+        reservationBuoyAvailableTextView.setText(formatter.printStringFromBoolean(reservationTO.getQuayInfoTO().getBuoyAvailable()));
+        reservationAnchorRequiredTextView.setText(formatter.printStringFromBoolean(reservationTO.getQuayInfoTO().getAnchorRequired()));
+        reservationElectricityAvailableTextView.setText(formatter.printStringFromBoolean(reservationTO.getQuayInfoTO().getElectricityAvailable()));
+        reservationCurrentWaterAvailableTextView.setText(formatter.printStringFromBoolean(reservationTO.getQuayInfoTO().getCurrentWaterAvailable()));
+        reservationCalculatedPriceTextView.setText(formatter.printPriceFromDouble(reservationTO.getQuayInfoTO().getCalculatedPrice()));
+        reservationNotesTextView.setText(formatter.printNamesFromString(reservationTO.getQuayInfoTO().getNotes()));
     }
 
 
@@ -127,38 +158,9 @@ public class ReservationInfoActivity extends AppCompatActivity {
 
         intent = getIntent();
         reservationTO = (ReservationTO) intent.getSerializableExtra("reservationTO");
+        service = RetrofitClientInstance.getRetrofitInstance(getApplicationContext()).create(GetDataService.class);
+        formatter = new Formatter();
     }
 
-    private String printMetersFromDouble(Double d) {
-        if (d == null) return "N/A";
-        else return Double.toString(d) + "m";
-    }
 
-    private String printPriceFromDouble(Double d) {
-        if (d == null) return "N/A";
-        else return Double.toString(d) + "PLN";
-    }
-
-    private String printNamesFromString(String s) {
-        if (s == null) return "N/A";
-        else return s;
-    }
-
-    private String printStringFromLocalDateTime(LocalDateTime date) {
-        if (date == null) return "N/A";
-        else {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
-            return date.format(formatter);
-        }
-    }
-
-    private String printStringFromNumber(Long quayNumber) {
-        if (quayNumber == null) return "N/A";
-        else return quayNumber.toString();
-    }
-
-    private String printStringFromBoolean(Boolean flag) {
-        if (flag == null) return "N/A";
-        else return flag.toString();
-    }
 }

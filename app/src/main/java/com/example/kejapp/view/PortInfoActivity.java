@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.kejapp.R;
 import com.example.kejapp.model.PortInfoTO;
 import com.example.kejapp.model.PortMapTO;
+import com.example.kejapp.utils.Formatter;
 import com.example.kejapp.utils.GetDataService;
 import com.example.kejapp.utils.RetrofitClientInstance;
 import com.google.android.gms.common.util.Strings;
@@ -48,6 +49,7 @@ public class PortInfoActivity extends AppCompatActivity {
     private SharedPreferences preferences;
 
     private GetDataService service;
+    private Formatter formatter;
 
     @Override
     protected synchronized void onCreate(Bundle savedInstanceState) {
@@ -110,6 +112,7 @@ public class PortInfoActivity extends AppCompatActivity {
         intent = getIntent();
         portMapTO = (PortMapTO) intent.getSerializableExtra("portMapTO");
         loadPortInfoTO(portMapTO.getId());
+        formatter = new Formatter();
     }
 
     private void bindTextViews() {
@@ -130,20 +133,20 @@ public class PortInfoActivity extends AppCompatActivity {
     }
 
     private void fillTextViews(PortInfoTO portInfoTO) {
-        portNameLabel.setText(printNamesFromString(portInfoTO.getName()));
-        entranceWidthLabel.setText(printMetersFromDouble(portInfoTO.getEntranceWidth()));
-        entranceDepthLabel.setText(printMetersFromDouble(portInfoTO.getEntranceDepth()));
-        maxVesselSubmersionLabel.setText(printMetersFromDouble(portInfoTO.getMaxVesselSubmersion()));
-        maxVesselLengthLabel.setText(printMetersFromDouble(portInfoTO.getMaxVesselLength()));
-        maxVesselWidthLabel.setText(printMetersFromDouble(portInfoTO.getMaxVesselWidth()));
-        dailyWaterLevelUpLabel.setText(printMetersFromDouble(portInfoTO.getDailyWaterLevelUp()));
-        dailyWaterLevelDownLabel.setText(printMetersFromDouble(portInfoTO.getDailyWaterLevelDown()));
+        portNameLabel.setText(formatter.printNamesFromString(portInfoTO.getName()));
+        entranceWidthLabel.setText(formatter.printMetersFromDouble(portInfoTO.getEntranceWidth()));
+        entranceDepthLabel.setText(formatter.printMetersFromDouble(portInfoTO.getEntranceDepth()));
+        maxVesselSubmersionLabel.setText(formatter.printMetersFromDouble(portInfoTO.getMaxVesselSubmersion()));
+        maxVesselLengthLabel.setText(formatter.printMetersFromDouble(portInfoTO.getMaxVesselLength()));
+        maxVesselWidthLabel.setText(formatter.printMetersFromDouble(portInfoTO.getMaxVesselWidth()));
+        dailyWaterLevelUpLabel.setText(formatter.printMetersFromDouble(portInfoTO.getDailyWaterLevelUp()));
+        dailyWaterLevelDownLabel.setText(formatter.printMetersFromDouble(portInfoTO.getDailyWaterLevelDown()));
 
-        showerPriceLabel.setText(printPriceFromDouble(portInfoTO.getShowerPrice()));
-        bathroomPriceLabel.setText(printPriceFromDouble(portInfoTO.getBathroomPrice()));
-        electricityPriceLabel.setText(printPriceFromDouble(portInfoTO.getElectricityPrice()));
-        currentWaterPriceLabel.setText(printPriceFromDouble(portInfoTO.getCurrentWaterPrice()));
-        toiletEmptyingPriceLabel.setText(printPriceFromDouble(portInfoTO.getToiletEmptyingPrice()));
+        showerPriceLabel.setText(formatter.printPriceFromDouble(portInfoTO.getShowerPrice()));
+        bathroomPriceLabel.setText(formatter.printPriceFromDouble(portInfoTO.getBathroomPrice()));
+        electricityPriceLabel.setText(formatter.printPriceFromDouble(portInfoTO.getElectricityPrice()));
+        currentWaterPriceLabel.setText(formatter.printPriceFromDouble(portInfoTO.getCurrentWaterPrice()));
+        toiletEmptyingPriceLabel.setText(formatter.printPriceFromDouble(portInfoTO.getToiletEmptyingPrice()));
     }
 
     private void loadPortInfoTO(Long id) {
@@ -163,20 +166,4 @@ public class PortInfoActivity extends AppCompatActivity {
             }
         });
     }
-
-    private String printMetersFromDouble(Double d) {
-        if (d == null) return "N/A";
-        else return Double.toString(d) + "m";
     }
-
-    private String printPriceFromDouble(Double d) {
-        if (d == null) return "N/A";
-        else return Double.toString(d) + "PLN";
-    }
-
-    private String printNamesFromString(String s) {
-        if (s == null) return "N/A";
-        else return s;
-    }
-
-}

@@ -16,6 +16,7 @@ import com.example.kejapp.R;
 import com.example.kejapp.model.MakeReservationRequest;
 import com.example.kejapp.model.QuayInfoTO;
 import com.example.kejapp.model.QuayTO;
+import com.example.kejapp.utils.Formatter;
 import com.example.kejapp.utils.GetDataService;
 import com.example.kejapp.utils.RetrofitClientInstance;
 
@@ -24,6 +25,8 @@ public class QuayInfoActivity extends AppCompatActivity {
     QuayTO quayTO;
     QuayInfoTO quayInfoTO;
     private Intent intent;
+
+    private Formatter formatter;
 
     private GetDataService service;
 
@@ -107,6 +110,7 @@ public class QuayInfoActivity extends AppCompatActivity {
     private void initializeGlobalData() {
         intent = getIntent();
         quayTO = (QuayTO) intent.getSerializableExtra("quayTO");
+        formatter = new Formatter();
     }
 
     private void loadData() {
@@ -139,25 +143,25 @@ public class QuayInfoActivity extends AppCompatActivity {
 
     private void fillTextViews(QuayInfoTO quayInfoTO) {
 
-        quayInfoPortNameTextView.setText(printNamesFromString(quayInfoTO.getPortName()));
-        quayInfoLatitudeTextView.setText(printMetersFromDouble(quayInfoTO.getLatitude()));
-        quayInfoLongitudeTextView.setText(printMetersFromDouble(quayInfoTO.getLongitude()));
+        quayInfoPortNameTextView.setText(formatter.printNamesFromString(quayInfoTO.getPortName()));
+        quayInfoLatitudeTextView.setText(formatter.printLatLngFromDouble(quayInfoTO.getLatitude()));
+        quayInfoLongitudeTextView.setText(formatter.printLatLngFromDouble(quayInfoTO.getLongitude()));
 
-        quayInfoPierTextView.setText(printNamesFromString(quayInfoTO.getPier()));
-        quayInfoQuayNumberTextView.setText(printStringFromNumber(quayInfoTO.getQuayNumber()));
+        quayInfoPierTextView.setText(formatter.printNamesFromString(quayInfoTO.getPier()));
+        quayInfoQuayNumberTextView.setText(formatter.printStringFromNumber(quayInfoTO.getQuayNumber()));
 
-        quayInfoMaxVesselLengthTextView.setText(printMetersFromDouble(quayInfoTO.getMaxVesselLength()));
-        quayInfoMaxVesselWidthTextView.setText(printMetersFromDouble(quayInfoTO.getMaxVesselWidth()));
-        quayInfoMaxVesselSubmersionTextView.setText(printMetersFromDouble(quayInfoTO.getMaxVesselSubmersion()));;
+        quayInfoMaxVesselLengthTextView.setText(formatter.printMetersFromDouble(quayInfoTO.getMaxVesselLength()));
+        quayInfoMaxVesselWidthTextView.setText(formatter.printMetersFromDouble(quayInfoTO.getMaxVesselWidth()));
+        quayInfoMaxVesselSubmersionTextView.setText(formatter.printMetersFromDouble(quayInfoTO.getMaxVesselSubmersion()));;
 
-        quayInfoMooringAvailableTextView.setText(printStringFromBoolean(quayInfoTO.getMooringAvailable()));
-        quayInfoMooringTypeTextView.setText(printNamesFromString(quayInfoTO.getMooringType()));
-        quayInfoBuoyAvailableTextView.setText(printStringFromBoolean(quayInfoTO.getBuoyAvailable()));
-        quayInfoAnchorRequiredTextView.setText(printStringFromBoolean(quayInfoTO.getAnchorRequired()));
-        quayInfoElectricityAvailableTextView.setText(printStringFromBoolean(quayInfoTO.getElectricityAvailable()));
-        quayInfoCurrentWaterAvailableTextView.setText(printStringFromBoolean(quayInfoTO.getCurrentWaterAvailable()));
-        quayInfoCalculatedPriceTextView.setText(printPriceFromDouble(quayInfoTO.getCalculatedPrice()));
-        quayInfoNotesTextView.setText(printNamesFromString(quayInfoTO.getNotes()));
+        quayInfoMooringAvailableTextView.setText(formatter.printStringFromBoolean(quayInfoTO.getMooringAvailable()));
+        quayInfoMooringTypeTextView.setText(formatter.printNamesFromString(quayInfoTO.getMooringType()));
+        quayInfoBuoyAvailableTextView.setText(formatter.printStringFromBoolean(quayInfoTO.getBuoyAvailable()));
+        quayInfoAnchorRequiredTextView.setText(formatter.printStringFromBoolean(quayInfoTO.getAnchorRequired()));
+        quayInfoElectricityAvailableTextView.setText(formatter.printStringFromBoolean(quayInfoTO.getElectricityAvailable()));
+        quayInfoCurrentWaterAvailableTextView.setText(formatter.printStringFromBoolean(quayInfoTO.getCurrentWaterAvailable()));
+        quayInfoCalculatedPriceTextView.setText(formatter.printPriceFromDouble(quayInfoTO.getCalculatedPrice()));
+        quayInfoNotesTextView.setText(formatter.printNamesFromString(quayInfoTO.getNotes()));
     }
 
     private void bindTextViews() {
@@ -180,32 +184,5 @@ public class QuayInfoActivity extends AppCompatActivity {
         quayInfoNotesTextView = findViewById(R.id.quayInfoNotesTextView);
         quayInfoQuayOrderButton = findViewById(R.id.quayInfoQuayOrderButton);
         quayInfoQuayBackButton = findViewById(R.id.quayInfoBackButton);
-    }
-
-
-
-    private String printMetersFromDouble(Double d) {
-        if (d == null) return "N/A";
-        else return Double.toString(d) + "m";
-    }
-
-    private String printPriceFromDouble(Double d) {
-        if (d == null) return "N/A";
-        else return Double.toString(d) + "PLN";
-    }
-
-    private String printNamesFromString(String s) {
-        if (s == null) return "N/A";
-        else return s;
-    }
-
-    private String printStringFromNumber(Long quayNumber) {
-        if (quayNumber == null) return "N/A";
-        else return quayNumber.toString();
-    }
-
-    private String printStringFromBoolean(Boolean flag) {
-        if (flag == null) return "N/A";
-        else return flag.toString();
     }
 }
