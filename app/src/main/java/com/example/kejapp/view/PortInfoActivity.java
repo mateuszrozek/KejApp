@@ -27,7 +27,7 @@ public class PortInfoActivity extends AppCompatActivity {
 
 
     private static final String PREFERENCES_NAME = "myPreferences";
-    private static final String PREFERENCES_TEXT_FIELD = "userEmail";
+    private static final String PREFERENCES_TEXT_FIELD = "userToken";
     private TextView portNameLabel;
     private TextView entranceWidthLabel;
     private TextView entranceDepthLabel;

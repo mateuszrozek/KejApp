@@ -1,6 +1,7 @@
 package com.example.kejapp.utils;
 
 import com.example.kejapp.model.KejappUserTO;
+import com.example.kejapp.model.LoginUserRequest;
 import com.example.kejapp.model.PierTO;
 import com.example.kejapp.model.PortInfoTO;
 import com.example.kejapp.model.PortMapTO;
@@ -30,4 +31,7 @@ public interface GetDataService {
 
     @POST("register")
     Call<Void> registerUser(@Body KejappUserTO kejappUserTO);
+
+    @POST("login")
+    Call<Void> login(@Body LoginUserRequest loginUserRequest);
 }

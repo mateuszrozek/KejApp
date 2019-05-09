@@ -29,7 +29,7 @@ import java.util.List;
 public class RegisterActivity extends AppCompatActivity {
 
     private static final String PREFERENCES_NAME = "myPreferences";
-    private static final String PREFERENCES_TEXT_FIELD = "userEmail";
+    private static final String PREFERENCES_TEXT_FIELD = "userToken";
     private SharedPreferences preferences;
     private boolean confirmed;
     String inputName ;
