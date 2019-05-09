@@ -13,7 +13,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/portNameTextView"
+            android:id="@+id/quayInfoPortNameTextView"
             style="@style/PortInfoTitle"
 
             android:text="Port 1"
@@ -43,7 +43,7 @@
                 android:text="@string/latitudeTextView" />
 
             <TextView
-                android:id="@+id/latitudeTextView"
+                android:id="@+id/quayInfoLatitudeTextView"
                 style="@style/ValueLabel"
 
                 android:layout_width="wrap_content"
@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/longitudeTextView"
+                android:id="@+id/quayInfoLongitudeTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -91,7 +91,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/pierTextView"
+                android:id="@+id/quayInfoPierTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -115,7 +115,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/quayNumberTextView"
+                android:id="@+id/quayInfoQuayNumberTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -139,7 +139,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/maxVesselLengthTextView"
+                android:id="@+id/quayInfoMaxVesselLengthTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -163,7 +163,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/maxVesselWidthTextView"
+                android:id="@+id/quayInfoMaxVesselWidthTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -187,7 +187,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/maxVesselSubmersionTextView"
+                android:id="@+id/quayInfoMaxVesselSubmersionTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -218,7 +218,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/mooringAvailableTextView"
+                android:id="@+id/quayInfoMooringAvailableTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -242,7 +242,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/mooringTypeTextView"
+                android:id="@+id/quayInfoMooringTypeTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -266,7 +266,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/buoyAvailableTextView"
+                android:id="@+id/quayInfoBuoyAvailableTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -290,7 +290,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/anchorRequiredTextView"
+                android:id="@+id/quayInfoAnchorRequiredTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -314,7 +314,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/electricityAvailableTextView"
+                android:id="@+id/quayInfoElectricityAvailableTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -338,7 +338,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/currentWaterAvailableTextView"
+                android:id="@+id/quayInfoCurrentWaterAvailableTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -362,7 +362,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/calculatedPriceTextView"
+                android:id="@+id/quayInfoCalculatedPriceTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -386,7 +386,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/notesTextView"
+                android:id="@+id/quayInfoNotesTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -400,7 +400,7 @@
             android:layout_height="wrap_content">
 
             <Button
-                android:id="@+id/quayBackButton"
+                android:id="@+id/quayInfoBackButton"
                 style="@style/OrderQuayButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -409,11 +409,11 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/quayOrderButton"/>
+                app:layout_constraintEnd_toStartOf="@id/quayInfoQuayOrderButton"/>
 
 
             <Button
-                android:id="@+id/quayOrderButton"
+                android:id="@+id/quayInfoQuayOrderButton"
                 style="@style/OrderQuayButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -81,7 +81,7 @@ public class ChooseDeckActivity extends AppCompatActivity {
 
     private void loadDecksFromDB() {
 
-        Call<List<PierTO>> call = service.findPiersById(portInfoTO.getId());
+        Call<List<PierTO>> call = service.findPiersByPortId(portInfoTO.getId());
         call.enqueue(new Callback<List<PierTO>>() {
 
             @Override

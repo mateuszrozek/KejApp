@@ -59,7 +59,7 @@ public class ChooseQuayActivity extends AppCompatActivity {
 
     private void loadQuaysFromDB() {
 
-        Call<List<QuayTO>> call = service.findQuaysById(pierTO.getPortId());
+        Call<List<QuayTO>> call = service.findQuaysByPortId(pierTO.getPortId());
         call.enqueue(new Callback<List<QuayTO>>() {
 
             @Override

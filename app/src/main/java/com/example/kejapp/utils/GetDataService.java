@@ -1,10 +1,12 @@
 package com.example.kejapp.utils;
 
 import com.example.kejapp.model.KejappUserTO;
+import com.example.kejapp.model.MakeReservationRequest;
 import com.example.kejapp.model.LoginUserRequest;
 import com.example.kejapp.model.PierTO;
 import com.example.kejapp.model.PortInfoTO;
 import com.example.kejapp.model.PortMapTO;
+import com.example.kejapp.model.QuayInfoTO;
 import com.example.kejapp.model.QuayTO;
 import com.example.kejapp.model.ReservationTO;
 
@@ -15,6 +17,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface GetDataService {
 
@@ -22,13 +25,19 @@ public interface GetDataService {
     Call<List<PortMapTO>> findAllPorts();
 
     @GET("quays/{portId}")
-    Call<List<QuayTO>> findQuaysById(@Path("portId") Long portId);
+    Call<List<QuayTO>> findQuaysByPortId(@Path("portId") Long portId);
 
     @GET("piers/{portId}")
-    Call<List<PierTO>> findPiersById(@Path("portId") Long portId);
+    Call<List<PierTO>> findPiersByPortId(@Path("portId") Long portId);
 
     @GET("ports/{portId}")
     Call<PortInfoTO> findPortById(@Path("portId") Long portId);
+
+    @GET("quays")
+    Call<QuayInfoTO> findQuayByPortIdAndPierAndQuayNumber(@Query("portId")Long portId, @Query("pier")String pier, @Query("quayNumber")Long quayNumber);
+
+    @POST("reservations")
+    Call<Void> makeReservation(MakeReservationRequest makeReservationRequest);
 
     @GET("reservations")
     Call<List<ReservationTO>> findReservations();

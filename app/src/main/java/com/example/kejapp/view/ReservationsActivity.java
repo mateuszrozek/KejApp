@@ -26,7 +26,6 @@ import java.util.List;
 public class ReservationsActivity extends AppCompatActivity {
 
     private Intent intent;
-//    private ReservationTO portInfoTO;
     private List<ReservationTO> reservationTOList;
     private GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
     private RecyclerView recyclerView;
@@ -48,7 +47,6 @@ public class ReservationsActivity extends AppCompatActivity {
     private void initializeGlobalData() {
 
         intent = getIntent();
-//        reservationTOList = (PortInfoTO) intent.getSerializableExtra("portInfoTO");
     }
 
     private void loadData() {
@@ -91,6 +89,4 @@ public class ReservationsActivity extends AppCompatActivity {
         }
         adapter = new ReservationListAdapter(reservationTOList);
     }
-
-
 }
