@@ -5,9 +5,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class MakeReservationRequest {
 
-    @SerializedName("portName")
+    @SerializedName("portId")
     @Expose
-    String portName;
+    Long portId;
 
     @SerializedName("pier")
     @Expose
@@ -17,12 +17,12 @@ public class MakeReservationRequest {
     @Expose
     Double quayNumber;
 
-    public String getPortName() {
-        return portName;
+    public Long getPortId() {
+        return portId;
     }
 
-    public void setPortName(String portName) {
-        this.portName = portName;
+    public void setPortName(Long portId) {
+        this.portId = portId;
     }
 
     public String getPier() {
