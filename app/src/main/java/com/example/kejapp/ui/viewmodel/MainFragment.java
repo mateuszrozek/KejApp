@@ -1,6 +1,8 @@
 package com.example.kejapp.ui.viewmodel;
 
 import androidx.lifecycle.ViewModelProviders;
+
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,12 +16,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 import com.example.kejapp.view.ChooseDeckActivity;
+import com.example.kejapp.view.LoginActivity;
+import com.example.kejapp.view.LogoutActivity;
 import com.example.kejapp.view.PortInfoActivity;
 import com.example.kejapp.R;
 import com.example.kejapp.model.PortMapTO;
 import com.example.kejapp.utils.CustomInfoWindowGoogleMap;
 import com.example.kejapp.utils.GetDataService;
 import com.example.kejapp.utils.RetrofitClientInstance;
+import com.google.android.gms.common.util.Strings;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -34,8 +39,10 @@ import java.util.List;
 public class MainFragment extends Fragment implements OnMapReadyCallback {
 
     private MainViewModel mViewModel;
-    private GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+    private GetDataService service;
     private List<PortMapTO> portsMapTO;
+    private static final String PREFERENCES_NAME = "myPreferences";
+    private static final String PREFERENCES_TEXT_FIELD = "userToken";
 
     public static MainFragment newInstance() {
         return new MainFragment();
@@ -46,6 +53,7 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        service = RetrofitClientInstance.getRetrofitInstance(getUserToken()).create(GetDataService.class);
         loadPortsFromDB();
         View v = inflater.inflate(R.layout.fragment_location_info, container,
                 false);
@@ -63,6 +71,12 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
         mapView.getMapAsync(this);
 
         return v;
+    }
+
+    private String getUserToken(){
+        SharedPreferences preferences = getContext().getSharedPreferences(PREFERENCES_NAME, Activity.MODE_PRIVATE);
+        String tokenFromSharedPreferences = preferences.getString(PREFERENCES_TEXT_FIELD, "");
+        return tokenFromSharedPreferences;
     }
 
 
