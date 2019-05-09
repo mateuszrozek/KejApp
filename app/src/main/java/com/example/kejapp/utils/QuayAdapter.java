@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.kejapp.R;
+import com.example.kejapp.model.QuayInfoTO;
 import com.example.kejapp.model.QuayTO;
 import com.example.kejapp.view.QuayInfoActivity;
 
@@ -40,7 +41,7 @@ public class QuayAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup viewGroup) {
+    public View getView(final int position, View view, ViewGroup viewGroup) {
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -56,22 +57,14 @@ public class QuayAdapter extends BaseAdapter {
                 @Override
                 public void onClick(View view) {
 
-//                    Intent intent = new Intent(view.getContext(), QuayInfoActivity.class);
-//                    Intent intent = new Intent(ChooseQuayActivity.this, QuayInfoActivity.class);
-//                    intent.putExtra("quay", textViewQuay.getText());
-//                    view.getContext().startActivity(intent);
-
+                    QuayTO quayTO = quays.get(position);
                     Intent intent = new Intent(context, QuayInfoActivity.class);
-                    intent.putExtra("quay", textViewQuay.getText());
+
+                    intent.putExtra("quayTO", quayTO);
+
                     context.startActivity(intent);
                 }
             });
-//            textViewQuay.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    context.startActivity();
-//                }
-//            });
 
 
         } else {

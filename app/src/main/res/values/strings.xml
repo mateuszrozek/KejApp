@@ -41,6 +41,8 @@
 
     <string name="quayOrderButton">Rezerwuj keję!</string>
     <string name="quayBackButton">Powrót</string>
+    <string name="reservationBackButton">Powrót</string>
+    <string name="reservationRevokeButton">Odwołaj rezerwację</string>
 
 
 </resources>

@@ -11,8 +11,6 @@ import com.example.kejapp.model.QuayTO;
 import com.example.kejapp.utils.GetDataService;
 import com.example.kejapp.utils.QuayAdapter;
 import com.example.kejapp.utils.RetrofitClientInstance;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +59,7 @@ public class ChooseQuayActivity extends AppCompatActivity {
 
     private void loadQuaysFromDB() {
 
-        Call<List<QuayTO>> call = service.findQuaysById(pierTO.getPortId());
+        Call<List<QuayTO>> call = service.findQuaysByPortId(pierTO.getPortId());
         call.enqueue(new Callback<List<QuayTO>>() {
 
             @Override

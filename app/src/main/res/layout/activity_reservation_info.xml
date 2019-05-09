@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".view.QuayInfoActivity">
+    tools:context=".view.ReservationInfoActivity">
 
     <LinearLayout
         style="@style/VerticalLinearLayout"
@@ -13,12 +13,60 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/quayInfoPortNameTextView"
+            android:id="@+id/portNameTextView"
             style="@style/PortInfoTitle"
 
             android:text="Port 1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            style="@style/HorizontalRelativeLayout"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/AttributLabel"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Początek rezerwacji" />
+
+            <TextView
+                android:id="@+id/reservationStartDate"
+                style="@style/ValueLabel"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12.13.2069" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/HorizontalRelativeLayout"
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/AttributLabel"
+
+                android:text="Koniec rezerwacji"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/reservationEndDate"
+                style="@style/ValueLabel"
+
+                android:text="13.13.2069"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/technicalInfoLabel"
@@ -43,7 +91,7 @@
                 android:text="@string/latitudeTextView" />
 
             <TextView
-                android:id="@+id/quayInfoLatitudeTextView"
+                android:id="@+id/latitudeTextView"
                 style="@style/ValueLabel"
 
                 android:layout_width="wrap_content"
@@ -67,7 +115,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/quayInfoLongitudeTextView"
+                android:id="@+id/longitudeTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -91,7 +139,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/quayInfoPierTextView"
+                android:id="@+id/pierTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -115,7 +163,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/quayInfoQuayNumberTextView"
+                android:id="@+id/quayNumberTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -139,7 +187,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/quayInfoMaxVesselLengthTextView"
+                android:id="@+id/maxVesselLengthTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -163,7 +211,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/quayInfoMaxVesselWidthTextView"
+                android:id="@+id/maxVesselWidthTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -187,7 +235,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/quayInfoMaxVesselSubmersionTextView"
+                android:id="@+id/maxVesselSubmersionTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -218,7 +266,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/quayInfoMooringAvailableTextView"
+                android:id="@+id/mooringAvailableTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -242,7 +290,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/quayInfoMooringTypeTextView"
+                android:id="@+id/mooringTypeTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -266,7 +314,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/quayInfoBuoyAvailableTextView"
+                android:id="@+id/buoyAvailableTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -290,7 +338,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/quayInfoAnchorRequiredTextView"
+                android:id="@+id/anchorRequiredTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -314,7 +362,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/quayInfoElectricityAvailableTextView"
+                android:id="@+id/electricityAvailableTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -338,7 +386,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/quayInfoCurrentWaterAvailableTextView"
+                android:id="@+id/currentWaterAvailableTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -362,7 +410,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/quayInfoCalculatedPriceTextView"
+                android:id="@+id/calculatedPriceTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -386,7 +434,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/quayInfoNotesTextView"
+                android:id="@+id/notesTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -400,24 +448,24 @@
             android:layout_height="wrap_content">
 
             <Button
-                android:id="@+id/quayInfoBackButton"
+                android:id="@+id/reservationBackButton"
                 style="@style/OrderQuayButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/quayBackButton"
+                android:text="@string/reservationBackButton"
                 android:layout_marginEnd="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/quayInfoQuayOrderButton"/>
+                app:layout_constraintEnd_toStartOf="@id/reservationRevokeButton"/>
 
 
             <Button
-                android:id="@+id/quayInfoQuayOrderButton"
+                android:id="@+id/reservationRevokeButton"
                 style="@style/OrderQuayButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/quayOrderButton"
+                android:text="@string/reservationRevokeButton"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
