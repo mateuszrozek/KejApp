@@ -20,8 +20,6 @@ import com.example.kejapp.view.LogoutActivity;
 import com.google.android.gms.common.util.Strings;
 
 public class RetrofitClientInstance {
-
-    private static Retrofit retrofit;
     private static final String BASE_URL = "http://10.0.2.2:8080/kejapp/api/v1/";          //emulator
     private static final String SECURITY_URL =  "http://10.0.2.2:8080/kejapp/api/v1/security/users/";
     private static final String PREFERENCES_NAME = "myPreferences";
@@ -38,7 +36,6 @@ public class RetrofitClientInstance {
         return updateRetrofitBuilderWithAuthorizationHeader(getUserToken(appContext), retrofitBuilder).build();
     }
 
-
     private static String getUserToken(Context context){
         SharedPreferences preferences = context.getSharedPreferences(PREFERENCES_NAME, Activity.MODE_PRIVATE);
         String tokenFromSharedPreferences = preferences.getString(PREFERENCES_TEXT_FIELD, "");
@@ -53,7 +50,6 @@ public class RetrofitClientInstance {
         return retrofitAuth;
     }
 
-
     private static Retrofit.Builder updateRetrofitBuilderWithAuthorizationHeader(String userToken, Retrofit.Builder retrofitBuilder){
         if(!Strings.isEmptyOrWhitespace(userToken)){
             return retrofitBuilder.client(createOkHttepClient(userToken));
@@ -61,7 +57,6 @@ public class RetrofitClientInstance {
             return retrofitBuilder;
         }
     }
-
 
     private static OkHttpClient createOkHttepClient(final String userToken) {
         OkHttpClient defaultHttpClient = new OkHttpClient.Builder()
@@ -76,10 +71,6 @@ public class RetrofitClientInstance {
                         }).build();
         return defaultHttpClient;
     }
-
-
-
-    //Retrofit retrofit = new Retrofit.Builder().addConverterFactory(GsonConverterFactory.create()).baseUrl(url).client(httpClient.build()).build();
 }
 
 
