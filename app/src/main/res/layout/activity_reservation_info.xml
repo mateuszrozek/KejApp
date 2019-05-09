@@ -13,7 +13,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/portNameTextView"
+            android:id="@+id/reservationPortNameTextView"
             style="@style/PortInfoTitle"
 
             android:text="Port 1"
@@ -68,6 +68,55 @@
 
         </RelativeLayout>
 
+        <RelativeLayout
+            style="@style/HorizontalRelativeLayout"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/AttributLabel"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pomost" />
+
+            <TextView
+                android:id="@+id/reservationPierTextView"
+                style="@style/ValueLabel"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/HorizontalRelativeLayout"
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/AttributLabel"
+
+                android:text="Numer keji"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/reservationQuayNumberTextView"
+                style="@style/ValueLabel"
+
+                android:text="13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+
         <TextView
             android:id="@+id/technicalInfoLabel"
             style="@style/PortInfoSubtitle"
@@ -91,7 +140,7 @@
                 android:text="@string/latitudeTextView" />
 
             <TextView
-                android:id="@+id/latitudeTextView"
+                android:id="@+id/reservationLatitudeTextView"
                 style="@style/ValueLabel"
 
                 android:layout_width="wrap_content"
@@ -115,55 +164,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/longitudeTextView"
-                style="@style/ValueLabel"
-
-                android:text="8.2 m"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            style="@style/HorizontalRelativeLayout"
-
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                style="@style/AttributLabel"
-
-                android:text="@string/pierTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/pierTextView"
-                style="@style/ValueLabel"
-
-                android:text="8.2 m"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            style="@style/HorizontalRelativeLayout"
-
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                style="@style/AttributLabel"
-
-                android:text="@string/quayNumberTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/quayNumberTextView"
+                android:id="@+id/reservationLongitudeTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -187,7 +188,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/maxVesselLengthTextView"
+                android:id="@+id/reservationMaxVesselLengthTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -211,7 +212,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/maxVesselWidthTextView"
+                android:id="@+id/reservationMaxVesselWidthTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -235,7 +236,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/maxVesselSubmersionTextView"
+                android:id="@+id/reservationMaxVesselSubmersionTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -266,7 +267,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/mooringAvailableTextView"
+                android:id="@+id/reservationMooringAvailableTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -290,7 +291,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/mooringTypeTextView"
+                android:id="@+id/reservationMooringTypeTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -314,7 +315,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/buoyAvailableTextView"
+                android:id="@+id/reservationBuoyAvailableTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -338,7 +339,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/anchorRequiredTextView"
+                android:id="@+id/reservationAnchorRequiredTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -362,7 +363,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/electricityAvailableTextView"
+                android:id="@+id/reservationElectricityAvailableTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -386,7 +387,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/currentWaterAvailableTextView"
+                android:id="@+id/reservationCurrentWaterAvailableTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -410,7 +411,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/calculatedPriceTextView"
+                android:id="@+id/reservationCalculatedPriceTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"
@@ -434,7 +435,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/notesTextView"
+                android:id="@+id/reservationNotesTextView"
                 style="@style/ValueLabel"
 
                 android:text="8.2 m"

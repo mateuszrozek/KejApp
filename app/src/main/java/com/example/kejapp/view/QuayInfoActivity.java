@@ -13,18 +13,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kejapp.R;
-import com.example.kejapp.model.PierTO;
-import com.example.kejapp.model.PortInfoTO;
-import com.example.kejapp.model.PortMapTO;
 import com.example.kejapp.model.QuayInfoTO;
 import com.example.kejapp.model.QuayTO;
-import com.example.kejapp.utils.DeckListAdapter;
 import com.example.kejapp.utils.GetDataService;
 import com.example.kejapp.utils.RetrofitClientInstance;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
-import java.util.List;
 
 public class QuayInfoActivity extends AppCompatActivity {
 
@@ -126,18 +118,18 @@ public class QuayInfoActivity extends AppCompatActivity {
         quayInfoLongitudeTextView.setText(printMetersFromDouble(quayInfoTO.getLongitude()));
 
         quayInfoPierTextView.setText(printNamesFromString(quayInfoTO.getPier()));
-        quayInfoQuayNumberTextView.setText(printNamesFromString(quayInfoTO.getQuayNumber().toString()));
+        quayInfoQuayNumberTextView.setText(printStringFromNumber(quayInfoTO.getQuayNumber()));
 
         quayInfoMaxVesselLengthTextView.setText(printMetersFromDouble(quayInfoTO.getMaxVesselLength()));
         quayInfoMaxVesselWidthTextView.setText(printMetersFromDouble(quayInfoTO.getMaxVesselWidth()));
         quayInfoMaxVesselSubmersionTextView.setText(printMetersFromDouble(quayInfoTO.getMaxVesselSubmersion()));;
 
-        quayInfoMooringAvailableTextView.setText(printNamesFromString(quayInfoTO.getMooringAvailable().toString()));
+        quayInfoMooringAvailableTextView.setText(printStringFromBoolean(quayInfoTO.getMooringAvailable()));
         quayInfoMooringTypeTextView.setText(printNamesFromString(quayInfoTO.getMooringType()));
-        quayInfoBuoyAvailableTextView.setText(printNamesFromString(quayInfoTO.getBuoyAvailable().toString()));
-        quayInfoAnchorRequiredTextView.setText(printNamesFromString(quayInfoTO.getAnchorRequired().toString()));
-        quayInfoElectricityAvailableTextView.setText(printNamesFromString(quayInfoTO.getElectricityAvailable().toString()));
-        quayInfoCurrentWaterAvailableTextView.setText(printNamesFromString(quayInfoTO.getCurrentWaterAvailable().toString()));
+        quayInfoBuoyAvailableTextView.setText(printStringFromBoolean(quayInfoTO.getBuoyAvailable()));
+        quayInfoAnchorRequiredTextView.setText(printStringFromBoolean(quayInfoTO.getAnchorRequired()));
+        quayInfoElectricityAvailableTextView.setText(printStringFromBoolean(quayInfoTO.getElectricityAvailable()));
+        quayInfoCurrentWaterAvailableTextView.setText(printStringFromBoolean(quayInfoTO.getCurrentWaterAvailable()));
         quayInfoCalculatedPriceTextView.setText(printPriceFromDouble(quayInfoTO.getCalculatedPrice()));
         quayInfoNotesTextView.setText(printNamesFromString(quayInfoTO.getNotes()));
     }
@@ -164,6 +156,8 @@ public class QuayInfoActivity extends AppCompatActivity {
         quayInfoQuayBackButton = findViewById(R.id.quayInfoBackButton);
     }
 
+
+
     private String printMetersFromDouble(Double d) {
         if (d == null) return "N/A";
         else return Double.toString(d) + "m";
@@ -177,5 +171,15 @@ public class QuayInfoActivity extends AppCompatActivity {
     private String printNamesFromString(String s) {
         if (s == null) return "N/A";
         else return s;
+    }
+
+    private String printStringFromNumber(Long quayNumber) {
+        if (quayNumber == null) return "N/A";
+        else return quayNumber.toString();
+    }
+
+    private String printStringFromBoolean(Boolean flag) {
+        if (flag == null) return "N/A";
+        else return flag.toString();
     }
 }
