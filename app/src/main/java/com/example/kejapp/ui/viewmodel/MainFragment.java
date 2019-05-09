@@ -53,7 +53,7 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        service = RetrofitClientInstance.getRetrofitInstance(getUserToken()).create(GetDataService.class);
+        service = RetrofitClientInstance.getRetrofitInstance(getContext()).create(GetDataService.class);
         loadPortsFromDB();
         View v = inflater.inflate(R.layout.fragment_location_info, container,
                 false);
@@ -73,14 +73,7 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
         return v;
     }
 
-    private String getUserToken(){
-        SharedPreferences preferences = getContext().getSharedPreferences(PREFERENCES_NAME, Activity.MODE_PRIVATE);
-        String tokenFromSharedPreferences = preferences.getString(PREFERENCES_TEXT_FIELD, "");
-        return tokenFromSharedPreferences;
-    }
-
-
-    @Override
+        @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 

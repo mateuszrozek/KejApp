@@ -121,9 +121,9 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void fetchDataFromFormular(){
-        inputName = ((EditText)findViewById(R.id.inputSurname)).getText().toString();
-        inputSurname = ((EditText)findViewById(R.id.inputEmail)).getText().toString();
-        inputEmail = ((EditText)findViewById(R.id.inputName)).getText().toString();
+        inputName = ((EditText)findViewById(R.id.inputName)).getText().toString();
+        inputSurname = ((EditText)findViewById(R.id.inputSurname)).getText().toString();
+        inputEmail = ((EditText)findViewById(R.id.inputEmail)).getText().toString();
         inputPassword = ((EditText)findViewById(R.id.inputPassword)).getText().toString();
         inputPasswordRepeat = ((EditText)findViewById(R.id.inputRepeatPassword)).getText().toString();
 
@@ -141,14 +141,6 @@ public class RegisterActivity extends AppCompatActivity {
         intent.putExtra("object 1","dupa");
 
         startActivity(intent);
-    }
-
-
-    public void saveToSharedPreferences(){
-        SharedPreferences.Editor preferencesEditor = preferences.edit();
-        String editTextData = "bartek1wasik@gmail.com";
-        preferencesEditor.putString(PREFERENCES_TEXT_FIELD, editTextData);
-        preferencesEditor.commit();
     }
 
     public void showWarning(){

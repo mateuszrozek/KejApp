@@ -1,6 +1,7 @@
 package com.example.kejapp.utils;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 
 import java.io.IOException;
@@ -23,18 +24,28 @@ public class RetrofitClientInstance {
     private static Retrofit retrofit;
     private static final String BASE_URL = "http://10.0.2.2:8080/kejapp/api/v1/";          //emulator
     private static final String SECURITY_URL =  "http://10.0.2.2:8080/kejapp/api/v1/security/users/";
-
+    private static final String PREFERENCES_NAME = "myPreferences";
+    private static final String PREFERENCES_TEXT_FIELD = "userToken";
 //    private static final String BASE_URL = "http://192.168.100.169:8080/kejapp/api/v1/";  //phone must be in the same wi-fi network with computer
 
 
-    public static Retrofit getRetrofitInstance(String token) {
+    public static Retrofit getRetrofitInstance(Context appContext) {
 
         Retrofit.Builder retrofitBuilder = new retrofit2.Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create());
 
-        return updateRetrofitBuilderWithAuthorizationHeader(token, retrofitBuilder).build();
+        return updateRetrofitBuilderWithAuthorizationHeader(getUserToken(appContext), retrofitBuilder).build();
     }
+
+
+    private static String getUserToken(Context context){
+        SharedPreferences preferences = context.getSharedPreferences(PREFERENCES_NAME, Activity.MODE_PRIVATE);
+        String tokenFromSharedPreferences = preferences.getString(PREFERENCES_TEXT_FIELD, "");
+        return tokenFromSharedPreferences;
+    }
+
+
 
     public static Retrofit getRetrofitInstance() {
         retrofit = new retrofit2.Retrofit.Builder()
