@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kejapp.R;
+import com.example.kejapp.model.MakeReservationRequest;
 import com.example.kejapp.model.QuayInfoTO;
 import com.example.kejapp.model.QuayTO;
 import com.example.kejapp.utils.GetDataService;
@@ -60,18 +61,45 @@ public class QuayInfoActivity extends AppCompatActivity {
         quayInfoQuayOrderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.putExtra("dupa", "dupa"); 
-                /*TODO 
-                tu coś dodawać czy puścić requesta tylko?*/
-                Toast.makeText(getApplicationContext(), "Keja została zarezerwowana", Toast.LENGTH_LONG).show();
-                startActivity(intent);
+                makeReservationRequest();
             }
         });
         quayInfoQuayBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBackPressed();
+            }
+        });
+    }
+
+    private void makeReservationRequest(){
+        MakeReservationRequest makeReservationRequest = new MakeReservationRequest();
+        makeReservationRequest.setPortId(quayTO.getPortId());
+        makeReservationRequest.setPier(quayTO.getPier());
+        makeReservationRequest.setQuayNumber(new Long(quayTO.getQuayNumber()).doubleValue());
+        sendReservationRequest(makeReservationRequest);
+    }
+
+    private void sendReservationRequest(MakeReservationRequest makeReservationRequest) {
+        Call<Void> call = service.makeReservation(makeReservationRequest);
+        call.enqueue(new Callback<Void>() {
+
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(response.code() == 201) {
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    intent.putExtra("dupa", "dupa");
+                    Toast.makeText(getApplicationContext(), "Keja została zarezerwowana", Toast.LENGTH_LONG).show();
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getApplication(), "Nie można dokonaćrezerwacji kei, spróbuj ponownie później.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(getApplication(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                mockQuayInfo();
             }
         });
     }
