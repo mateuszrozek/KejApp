@@ -25,7 +25,7 @@ public class QuayInfoTO implements Serializable {
 
     @SerializedName("quayNumber")
     @Expose
-    Double quayNumber;
+    Long quayNumber;
 
     @SerializedName("maxVesselLength")
     @Expose
@@ -104,11 +104,11 @@ public class QuayInfoTO implements Serializable {
         this.pier = pier;
     }
 
-    public Double getQuayNumber() {
+    public Long getQuayNumber() {
         return quayNumber;
     }
 
-    public void setQuayNumber(Double quayNumber) {
+    public void setQuayNumber(Long quayNumber) {
         this.quayNumber = quayNumber;
     }
 
