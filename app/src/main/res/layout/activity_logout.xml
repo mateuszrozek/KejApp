@@ -24,6 +24,17 @@
             android:textSize="22sp"
             android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/logedInUserMail"
+            style="@style/PortInfoSubtitle"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:text=" "
+            android:textSize="22sp"
+            android:textStyle="italic" />
+
 
         <Button
             android:id="@+id/logoutButton"
