@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.kejapp.R;
 import com.example.kejapp.model.KejappUserTO;
+import com.example.kejapp.model.LoginUserRequest;
 import com.example.kejapp.model.PierTO;
 import com.example.kejapp.utils.DeckListAdapter;
 import com.example.kejapp.utils.GetDataService;
@@ -45,6 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
     String inputBoatSubmersion;
 
     private GetDataService serviceAuth;
+    private GetDataService service;
 
 
     @Override
@@ -58,7 +60,7 @@ public class RegisterActivity extends AppCompatActivity {
         Button createNewUserButtton = findViewById(R.id.registerButton);
 
         serviceAuth = RetrofitClientInstance.getRetrofitInstanceForUserAuthorization().create(GetDataService.class);
-
+        service = RetrofitClientInstance.getRetrofitInstance(getApplicationContext()).create(GetDataService.class);
 
         createNewUserButtton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,7 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    private void registerUser(KejappUserTO newUser) {
+    private void registerUser(final KejappUserTO newUser) {
 
         Call<Void> call = serviceAuth.registerUser(newUser);
         call.enqueue(new Callback<Void>() {
@@ -106,8 +108,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onResponse(Call<Void> call, Response<Void> response) {
                int reponseCode = response.code();
                if (reponseCode == 201){
-                    returnToMainMap();
-                    Toast.makeText(getApplication(), "Zarejestrowano! Zaloguj się!", Toast.LENGTH_SHORT).show();
+                   autenticateUser(newUser.getUsername(), newUser.getPassword());
                 } else if (reponseCode == 409){
                    Toast.makeText(getApplication(), "Taki użytkownik już istnieje!", Toast.LENGTH_SHORT).show();
                }
@@ -118,6 +119,47 @@ public class RegisterActivity extends AppCompatActivity {
                 Toast.makeText(getApplication(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+
+    public void autenticateUser(String mail, String password){
+
+        LoginUserRequest loginUserRequest = new LoginUserRequest();
+        loginUserRequest.setUsername(mail);
+        loginUserRequest.setPassword(password);
+
+        Call<Void> call = service.login(loginUserRequest);
+        call.enqueue(new Callback<Void>() {
+
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                int responseCode = response.code();
+                if (responseCode == 200){
+                    try{
+                        String token = response.headers().get("Authorization").replace("Bearer ", "");
+                        saveToSharedPreferences(token);
+                        returnToMainMap();
+                        Toast.makeText(getApplication(), "Zalogowano poprawnie!", Toast.LENGTH_LONG).show();
+                    } catch (Exception ex){
+
+                    }
+                }else{
+                    Toast.makeText(getApplication(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(getApplication(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    public void saveToSharedPreferences(String token){
+        SharedPreferences.Editor preferencesEditor = preferences.edit();
+        preferencesEditor.putString(PREFERENCES_TEXT_FIELD, token);
+        preferencesEditor.commit();
     }
 
     public void fetchDataFromFormular(){
