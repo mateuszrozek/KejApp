@@ -27,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private static final String PREFERENCES_NAME = "myPreferences";
     private static final String PREFERENCES_TEXT_FIELD = "userToken";
+    private static final String PREFERENCES_EMAIL = "userEmail";
     private SharedPreferences preferences;
     private GetDataService service;
 
@@ -64,9 +65,10 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public void saveToSharedPreferences(String token){
+    public void saveToSharedPreferences(String token, String email){
         SharedPreferences.Editor preferencesEditor = preferences.edit();
         preferencesEditor.putString(PREFERENCES_TEXT_FIELD, token);
+        preferencesEditor.putString(PREFERENCES_EMAIL, email);
         preferencesEditor.commit();
     }
     public void returnToMainMap() {
@@ -75,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    public void autenticateUser(String mail, String password){
+    public void autenticateUser(final String mail, String password){
 
         LoginUserRequest loginUserRequest = new LoginUserRequest();
         loginUserRequest.setUsername(mail);
@@ -90,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (responseCode == 200){
                     try{
                         String token = response.headers().get("Authorization").replace("Bearer ", "");
-                        saveToSharedPreferences(token);
+                        saveToSharedPreferences(token, mail);
                         returnToMainMap();
                         Toast.makeText(getApplication(), "Zalogowano poprawnie!", Toast.LENGTH_LONG).show();
                     } catch (Exception ex){

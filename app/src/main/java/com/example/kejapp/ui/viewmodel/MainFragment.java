@@ -41,9 +41,7 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
     private MainViewModel mViewModel;
     private GetDataService service;
     private List<PortMapTO> portsMapTO;
-    private static final String PREFERENCES_NAME = "myPreferences";
-    private static final String PREFERENCES_TEXT_FIELD = "userToken";
-
+    
     public static MainFragment newInstance() {
         return new MainFragment();
     }
