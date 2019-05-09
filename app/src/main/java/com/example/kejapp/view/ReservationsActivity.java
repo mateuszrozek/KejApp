@@ -40,9 +40,7 @@ public class ReservationsActivity extends AppCompatActivity {
         initializeGlobalData();
         loadData(); //loadFromDB or mockReservations
 
-        recyclerView = findViewById(R.id.recyclerViewReservations);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
+
     }
 
     private void initializeGlobalData() {
@@ -53,9 +51,6 @@ public class ReservationsActivity extends AppCompatActivity {
     private void loadData() {
 
         loadReservationsFromDB();
-        if (reservationTOList == null) {
-            mockReservations();
-        }
     }
 
     private void loadReservationsFromDB() {
@@ -67,11 +62,15 @@ public class ReservationsActivity extends AppCompatActivity {
             public void onResponse(Call<List<ReservationTO>> call, Response<List<ReservationTO>> response) {
                 reservationTOList = response.body();
                 adapter = new ReservationListAdapter(reservationTOList);
+                recyclerView = findViewById(R.id.recyclerViewReservations);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                recyclerView.setAdapter(adapter);
             }
 
             @Override
             public void onFailure(Call<List<ReservationTO>> call, Throwable t) {
                 Toast.makeText(getApplication(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                mockReservations();
             }
         });
     }
@@ -89,5 +88,8 @@ public class ReservationsActivity extends AppCompatActivity {
             reservationTOList.add(reservationTO);
         }
         adapter = new ReservationListAdapter(reservationTOList);
+        recyclerView = findViewById(R.id.recyclerViewReservations);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
     }
 }

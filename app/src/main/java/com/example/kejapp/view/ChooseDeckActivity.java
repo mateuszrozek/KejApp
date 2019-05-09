@@ -40,11 +40,6 @@ public class ChooseDeckActivity extends AppCompatActivity {
 
         initializeGlobalData();
         loadData(); //loadFromDB or mockDecks
-
-        recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
-
     }
 
     private void initializeGlobalData() {
@@ -75,9 +70,6 @@ public class ChooseDeckActivity extends AppCompatActivity {
     private void loadData() {
 
         loadDecksFromDB();
-        if (pierTOList == null) {
-            mockDecks();
-        }
     }
 
     private void loadDecksFromDB() {
@@ -89,11 +81,15 @@ public class ChooseDeckActivity extends AppCompatActivity {
             public void onResponse(Call<List<PierTO>> call, Response<List<PierTO>> response) {
                 pierTOList = response.body();
                 adapter = new DeckListAdapter(pierTOList);
+                recyclerView = findViewById(R.id.recyclerView);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                recyclerView.setAdapter(adapter);
             }
 
             @Override
             public void onFailure(Call<List<PierTO>> call, Throwable t) {
                 Toast.makeText(getApplication(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                mockDecks();
             }
         });
     }
@@ -116,5 +112,8 @@ public class ChooseDeckActivity extends AppCompatActivity {
             pierTOList.add(pierTO);
         }
         adapter = new DeckListAdapter(pierTOList);
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
     }
 }

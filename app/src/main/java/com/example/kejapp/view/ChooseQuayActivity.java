@@ -13,6 +13,7 @@ import com.example.kejapp.utils.QuayAdapter;
 import com.example.kejapp.utils.RetrofitClientInstance;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,11 +37,6 @@ public class ChooseQuayActivity extends AppCompatActivity {
 
         initializeGlobalData();
         loadData(); //loadFromDB or mockDecks
-
-//        mockQuays();
-
-        GridView gridView = findViewById(R.id.gridViewChooseQuay);
-        gridView.setAdapter(quayAdapter);
     }
 
     private void initializeGlobalData() {
@@ -52,9 +48,6 @@ public class ChooseQuayActivity extends AppCompatActivity {
     private void loadData() {
 
         loadQuaysFromDB();
-        if (quayTOs == null) {
-            mockQuays();
-        }
     }
 
 
@@ -66,15 +59,28 @@ public class ChooseQuayActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<QuayTO>> call, Response<List<QuayTO>> response) {
                 quayTOs = response.body();
-                quayAdapter = new QuayAdapter(getApplicationContext(), quayTOs);
-
+                List<QuayTO> filteredQuays = filterQuays(quayTOs, pierTO.getPierId());
+                quayAdapter = new QuayAdapter(getApplicationContext(), filteredQuays);
+                GridView gridView = findViewById(R.id.gridViewChooseQuay);
+                gridView.setAdapter(quayAdapter);
             }
 
             @Override
             public void onFailure(Call<List<QuayTO>> call, Throwable t) {
                 Toast.makeText(getApplication(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                mockQuays();
             }
         });
+    }
+
+    private List<QuayTO> filterQuays(List<QuayTO> quayTOs, String pierId) {
+        List<QuayTO> result = new ArrayList<>();
+        for (QuayTO quayTO: quayTOs) {
+            if (quayTO.getPier().equals(pierId)){
+                result.add(quayTO);
+            }
+        }
+        return result;
     }
 
     private void mockQuays() {
@@ -89,5 +95,7 @@ public class ChooseQuayActivity extends AppCompatActivity {
             quayTOs.add(quay);
         }
         quayAdapter = new QuayAdapter(getApplicationContext(), quayTOs);
+        GridView gridView = findViewById(R.id.gridViewChooseQuay);
+        gridView.setAdapter(quayAdapter);
     }
 }

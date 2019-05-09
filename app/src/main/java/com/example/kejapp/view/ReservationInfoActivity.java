@@ -152,7 +152,6 @@ public class ReservationInfoActivity extends AppCompatActivity {
         }
     }
 
-
     private String printStringFromNumber(Long quayNumber) {
         if (quayNumber == null) return "N/A";
         else return quayNumber.toString();

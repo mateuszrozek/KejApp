@@ -20,7 +20,7 @@
     <string name="currentWaterPriceLabel">Woda bieżąca</string>
     <string name="toiletEmptyingPriceLabel">Opróżnianie toalety</string>
 
-    <string name="portInfoButton">Zarezerwuj keję</string>
+    <string name="portInfoButton">Przejrzyj keje</string>
 
     <string name="portNameTextView">Nazwa portu</string>
     <string name="latitudeTextView">Szerokość geogr.</string>

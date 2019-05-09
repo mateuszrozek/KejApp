@@ -53,9 +53,9 @@ public class QuayInfoActivity extends AppCompatActivity {
         service = RetrofitClientInstance.getRetrofitInstance(getApplicationContext()).create(GetDataService.class);
         setContentView(R.layout.activity_quay_info);
 
+        bindTextViews();
         initializeGlobalData();
         loadData(); //loadFromDB or mockQuayInfo
-        bindTextViews();
 
         quayInfoQuayOrderButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,16 +82,13 @@ public class QuayInfoActivity extends AppCompatActivity {
     }
 
     private void loadData() {
-
         loadQuayInfoFromDB();
-        if (quayInfoTO == null) {
-            mockQuayInfo();
-        }
     }
 
     private void mockQuayInfo() {
         quayInfoTO = new QuayInfoTO();
         quayInfoTO.setPortName("WilkasyDummy");
+        fillTextViews(quayInfoTO);
     }
 
     private void loadQuayInfoFromDB() {
@@ -107,6 +104,7 @@ public class QuayInfoActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<QuayInfoTO> call, Throwable t) {
                 Toast.makeText(getApplication(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                mockQuayInfo();
             }
         });
     }
