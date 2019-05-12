@@ -39,17 +39,13 @@ public class ReservationsActivity extends AppCompatActivity {
 
         initializeGlobalData();
         loadData(); //loadFromDB or mockReservations
-
-
     }
 
     private void initializeGlobalData() {
-
         intent = getIntent();
     }
 
     private void loadData() {
-
         loadReservationsFromDB();
     }
 
