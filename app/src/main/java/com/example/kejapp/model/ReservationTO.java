@@ -15,11 +15,11 @@ public class ReservationTO implements Serializable {
 
     @SerializedName("startDate")
     @Expose
-    LocalDateTime startDate;
+    String startDate;
 
     @SerializedName("endDate")
     @Expose
-    LocalDateTime endDate;
+    String endDate;
 
     public QuayInfoTO getQuayInfoTO() {
         return quayInfoTO;
@@ -29,19 +29,19 @@ public class ReservationTO implements Serializable {
         this.quayInfoTO = quayInfoTO;
     }
 
-    public LocalDateTime getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDateTime startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDateTime getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDateTime endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 }

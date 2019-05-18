@@ -84,27 +84,31 @@ public class QuayInfoActivity extends AppCompatActivity {
     }
 
     private void sendReservationRequest(MakeReservationRequest makeReservationRequest) {
-        Call<Void> call = service.makeReservation(makeReservationRequest);
-        call.enqueue(new Callback<Void>() {
+        try {
+            Call<Void> call = service.makeReservation(makeReservationRequest);
+            call.enqueue(new Callback<Void>() {
 
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                if(response.code() == 201) {
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    intent.putExtra("dupa", "dupa");
-                    Toast.makeText(getApplicationContext(), "Keja została zarezerwowana", Toast.LENGTH_LONG).show();
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(getApplication(), "Nie można dokonaćrezerwacji kei, spróbuj ponownie później.", Toast.LENGTH_SHORT).show();
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    if (response.code() == 201) {
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        intent.putExtra("dupa", "dupa");
+                        Toast.makeText(getApplicationContext(), "Keja została zarezerwowana", Toast.LENGTH_LONG).show();
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(getApplication(), "Nie można dokonaćrezerwacji kei, spróbuj ponownie później.", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(getApplication(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
-                mockQuayInfo();
-            }
-        });
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+                    Toast.makeText(getApplication(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                    mockQuayInfo();
+                }
+            });
+        } catch(Exception ex){
+            System.out.println(ex.getStackTrace());
+        }
     }
 
     private void initializeGlobalData() {

@@ -77,8 +77,8 @@ public class ReservationsActivity extends AppCompatActivity {
             QuayInfoTO quayInfoTO = new QuayInfoTO();
             quayInfoTO.setPortName("Wilkasy");
             reservationTO.setQuayInfoTO(quayInfoTO);
-            reservationTO.setStartDate(LocalDateTime.now());
-            reservationTO.setEndDate(LocalDateTime.now());
+            //reservationTO.setStartDate(LocalDateTime.now().toString());
+            //reservationTO.setEndDate(LocalDateTime.now());
 
             reservationTOList.add(reservationTO);
         }
