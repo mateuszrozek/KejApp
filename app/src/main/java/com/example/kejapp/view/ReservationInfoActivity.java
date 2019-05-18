@@ -52,8 +52,6 @@ public class ReservationInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservation_info);
 
-
-
         bindTextViews();
         initializeGlobalData();
         fillTextViews(reservationTO);

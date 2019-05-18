@@ -52,7 +52,7 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
                              Bundle savedInstanceState) {
 
         service = RetrofitClientInstance.getRetrofitInstance(getContext()).create(GetDataService.class);
-        loadPortsFromDB();
+//        loadPortsFromDB();
         View v = inflater.inflate(R.layout.fragment_location_info, container,
                 false);
         MapView mapView = v.findViewById(R.id.mapView);
@@ -82,12 +82,14 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        if (portsMapTO!=null){
-            loadMarkers(googleMap);
-        }
-        else {
-            loadDummyMarker(googleMap);
-        }
+        loadPortsFromDB(googleMap);
+
+//        if (portsMapTO!=null){
+//            loadMarkers(googleMap);
+//        }
+//        else {
+//            loadDummyMarker(googleMap);
+//        }
 
         CustomInfoWindowGoogleMap customInfoWindow = new CustomInfoWindowGoogleMap(getActivity());
         googleMap.setInfoWindowAdapter(customInfoWindow);
@@ -133,18 +135,26 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
         }
     }
 
-    private void loadPortsFromDB() {
+    private void loadPortsFromDB(final GoogleMap googleMap) {
         Call<List<PortMapTO>> call = service.findAllPorts();
         call.enqueue(new Callback<List<PortMapTO>>() {
 
             @Override
             public void onResponse(Call<List<PortMapTO>> call, Response<List<PortMapTO>> response) {
-                portsMapTO = response.body();
+                try {
+                    portsMapTO = response.body();
+                    loadMarkers(googleMap);
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
+
             }
 
             @Override
             public void onFailure(Call<List<PortMapTO>> call, Throwable t) {
                 Toast.makeText(getActivity(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                loadDummyMarker(googleMap);
             }
         });
     }

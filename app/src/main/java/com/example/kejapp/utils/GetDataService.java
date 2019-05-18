@@ -37,7 +37,7 @@ public interface GetDataService {
     Call<QuayInfoTO> findQuayByPortIdAndPierAndQuayNumber(@Query("portId")Long portId, @Query("pier")String pier, @Query("quayNumber")Long quayNumber);
 
     @POST("reservations")
-    Call<Void> makeReservation(MakeReservationRequest makeReservationRequest);
+    Call<Void> makeReservation(@Body MakeReservationRequest makeReservationRequest);
 
     @GET("reservations")
     Call<List<ReservationTO>> findReservations();

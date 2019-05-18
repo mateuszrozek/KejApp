@@ -1,18 +1,10 @@
 package com.example.kejapp.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.kejapp.R;
-import com.example.kejapp.model.PierTO;
 import com.example.kejapp.model.QuayInfoTO;
 import com.example.kejapp.model.ReservationTO;
 import com.example.kejapp.utils.GetDataService;
@@ -22,6 +14,13 @@ import com.example.kejapp.utils.RetrofitClientInstance;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ReservationsActivity extends AppCompatActivity {
 
@@ -73,7 +72,7 @@ public class ReservationsActivity extends AppCompatActivity {
 
     private void mockReservations() {
         reservationTOList = new ArrayList<>();
-        for (int i = 1; i < 11; i++) {
+        for (int i = 1; i < 3; i++) {
             ReservationTO reservationTO = new ReservationTO();
             QuayInfoTO quayInfoTO = new QuayInfoTO();
             quayInfoTO.setPortName("Wilkasy");
