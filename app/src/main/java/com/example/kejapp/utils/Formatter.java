@@ -1,8 +1,5 @@
 package com.example.kejapp.utils;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 public class Formatter {
 
     public String printMetersFromDouble(Double d) {
@@ -20,12 +17,9 @@ public class Formatter {
         else return s;
     }
 
-    public String printStringFromLocalDateTime(LocalDateTime date) {
+    public String printStringFromLocalDateTime(String date) {
         if (date == null) return "N/A";
-        else {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
-            return date.format(formatter);
-        }
+        else return date;
     }
 
     public String printStringFromNumber(Long quayNumber) {

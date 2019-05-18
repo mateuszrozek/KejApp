@@ -101,8 +101,8 @@ public class ReservationInfoActivity extends AppCompatActivity {
 
     private void fillTextViews(ReservationTO reservationTO) {
 
-        reservationStartDate.setText(printStringFromLocalDateTime(reservationTO.getStartDate()));
-        reservationEndDate.setText(printStringFromLocalDateTime(reservationTO.getStartDate()));
+        reservationStartDate.setText(formatter.printStringFromLocalDateTime(reservationTO.getStartDate()));
+        reservationEndDate.setText(formatter.printStringFromLocalDateTime(reservationTO.getStartDate()));
 
         reservationPortNameTextView.setText(formatter.printNamesFromString(reservationTO.getQuayInfoTO().getPortName()));
         reservationLatitudeTextView.setText(formatter.printLatLngFromDouble(reservationTO.getQuayInfoTO().getLatitude()));
