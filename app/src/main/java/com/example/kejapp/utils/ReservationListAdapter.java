@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import com.example.kejapp.R;
 import com.example.kejapp.model.ReservationTO;
-import com.example.kejapp.view.ChooseQuayActivity;
 import com.example.kejapp.view.ReservationInfoActivity;
 
 import java.util.List;
@@ -36,8 +35,8 @@ public class ReservationListAdapter extends RecyclerView.Adapter<ReservationList
 
         final ReservationTO reservationTO = reservationTOList.get(position);
 
-        String pos = String.valueOf(position);
-        holder.reservationNumberLabel.setText(pos);
+        int num = position + 1;
+        holder.reservationNumberLabel.setText(num + "");
         holder.reservationPortNameLabel.setText(reservationTO.getQuayInfoTO().getPortName());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
