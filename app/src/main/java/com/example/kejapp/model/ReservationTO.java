@@ -13,6 +13,10 @@ public class ReservationTO implements Serializable {
     @Expose
     QuayInfoTO quayInfoTO;
 
+    @SerializedName("id")
+    @Expose
+    Long id;
+
     @SerializedName("startDate")
     @Expose
     String startDate;
@@ -27,6 +31,14 @@ public class ReservationTO implements Serializable {
 
     public void setQuayInfoTO(QuayInfoTO quayInfoTO) {
         this.quayInfoTO = quayInfoTO;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getStartDate() {

@@ -40,6 +40,12 @@ public class ReservationsActivity extends AppCompatActivity {
         loadData(); //loadFromDB or mockReservations
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadData(); //loadFromDB or mockReservations
+    }
+
     private void initializeGlobalData() {
         intent = getIntent();
     }

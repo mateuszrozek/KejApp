@@ -9,7 +9,6 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.kejapp.R;
-import com.example.kejapp.model.QuayInfoTO;
 import com.example.kejapp.model.QuayTO;
 import com.example.kejapp.view.QuayInfoActivity;
 
@@ -52,20 +51,16 @@ public class QuayAdapter extends BaseAdapter {
             gridView = inflater.inflate(R.layout.choose_quay_item, null);
             final TextView textViewQuay = gridView.findViewById(R.id.textViewQuay);
             textViewQuay.setText(quays.get(position).getQuayNumber().toString());
-
             textViewQuay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
                     QuayTO quayTO = quays.get(position);
                     Intent intent = new Intent(context, QuayInfoActivity.class);
-
                     intent.putExtra("quayTO", quayTO);
-
                     context.startActivity(intent);
                 }
             });
-
 
         } else {
             gridView = view;
